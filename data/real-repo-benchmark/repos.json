@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "description": "Starter list of real public repositories for inventory and human-labeled scanner evaluation. No repository code is executed or installed. For reproducible scoring, pin commits and review expected_findings after each scan.",
+  "repositories": [
+    { "name": "openai/openai-agents-python", "url": "https://github.com/openai/openai-agents-python.git" },
+    { "name": "openai/openai-python", "url": "https://github.com/openai/openai-python.git" },
+    { "name": "anthropics/anthropic-sdk-python", "url": "https://github.com/anthropics/anthropic-sdk-python.git" },
+    { "name": "googleapis/python-genai", "url": "https://github.com/googleapis/python-genai.git" },
+    { "name": "langchain-ai/langchain", "url": "https://github.com/langchain-ai/langchain.git" },
+    { "name": "BerriAI/litellm", "url": "https://github.com/BerriAI/litellm.git" },
+    { "name": "vercel/ai", "url": "https://github.com/vercel/ai.git" },
+    { "name": "pydantic/pydantic-ai", "url": "https://github.com/pydantic/pydantic-ai.git" },
+    { "name": "huggingface/smolagents", "url": "https://github.com/huggingface/smolagents.git" },
+    { "name": "microsoft/autogen", "url": "https://github.com/microsoft/autogen.git" },
+    { "name": "run-llama/llama_index", "url": "https://github.com/run-llama/llama_index.git" },
+    { "name": "continuedev/continue", "url": "https://github.com/continuedev/continue.git" },
+    { "name": "agno-agi/agno", "url": "https://github.com/agno-agi/agno.git" },
+    { "name": "browser-use/browser-use", "url": "https://github.com/browser-use/browser-use.git" },
+    { "name": "crewAIInc/crewAI", "url": "https://github.com/crewAIInc/crewAI.git" },
+    { "name": "langfuse/langfuse", "url": "https://github.com/langfuse/langfuse.git" },
+    { "name": "instructor-ai/instructor", "url": "https://github.com/instructor-ai/instructor.git" },
+    { "name": "microsoft/semantic-kernel", "url": "https://github.com/microsoft/semantic-kernel.git" },
+    { "name": "mastra-ai/mastra", "url": "https://github.com/mastra-ai/mastra.git" },
+    { "name": "langchain-ai/langgraph", "url": "https://github.com/langchain-ai/langgraph.git" }
+  ]
+}

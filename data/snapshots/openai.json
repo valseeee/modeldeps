@@ -1,0 +1,1276 @@
+{
+  "provider": "openai",
+  "surface": "openai-api",
+  "source_url": "https://developers.openai.com/api/docs/deprecations",
+  "observed_at": "2026-10-22T23:09:45Z",
+  "models": [
+    {
+      "model_id": "babbage-002",
+      "status": "retired",
+      "announced_at": "2025-09-26",
+      "shutdown_at": "2026-09-28",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "chatgpt-4o-latest",
+      "status": "retired",
+      "announced_at": "2025-11-18",
+      "shutdown_at": "2026-02-17",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.1-chat-latest",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "chatgpt-image-latest",
+      "status": "deprecated",
+      "announced_at": "2026-06-02",
+      "shutdown_at": "2026-12-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-image-2.5-sunburst",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-2.5-flare",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "codex-mini-latest",
+      "status": "retired",
+      "announced_at": "2025-11-17",
+      "shutdown_at": "2026-02-12",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5-codex-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "computer-use-preview-2025-03-11",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "dall-e-2",
+      "status": "retired",
+      "announced_at": "2025-11-14",
+      "shutdown_at": "2026-05-12",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-image-2",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-1",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "dall-e-3",
+      "status": "retired",
+      "announced_at": "2025-11-14",
+      "shutdown_at": "2026-05-12",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-image-2",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-1",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "davinci-002",
+      "status": "retired",
+      "announced_at": "2025-09-26",
+      "shutdown_at": "2026-09-28",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "ft-babbage-002",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "ft-davinci-002",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "ft-gpt-3.5-turbo",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "ft-gpt-4",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "ft-gpt-4.1-nano-2025-04-14",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-luna",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "ft-o4-mini-2025-04-16",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-3.5-turbo-0125",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-3.5-turbo-1106",
+      "status": "retired",
+      "announced_at": "2025-09-26",
+      "shutdown_at": "2026-09-28",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-3.5-turbo-instruct",
+      "status": "retired",
+      "announced_at": "2025-09-26",
+      "shutdown_at": "2026-09-28",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4-0125-preview",
+      "status": "retired",
+      "announced_at": "2025-09-26",
+      "shutdown_at": "2026-03-26",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-4.1",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4-0314",
+      "status": "retired",
+      "announced_at": "2025-09-26",
+      "shutdown_at": "2026-03-26",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-4.1",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4-0613",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-4-1106-preview",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-4-turbo",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-4.1-2025-04-14",
+      "status": "deprecated",
+      "announced_at": "2026-10-14",
+      "shutdown_at": "2027-01-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-luna",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4.1-mini-2025-04-14",
+      "status": "deprecated",
+      "announced_at": "2026-10-14",
+      "shutdown_at": "2027-01-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-luna",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4.1-nano",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-luna",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-4.1-nano-2025-04-14",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-luna",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-4.5-preview",
+      "status": "retired",
+      "announced_at": "2025-04-14",
+      "shutdown_at": "2025-07-14",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-4.1",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-2024-05-13",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "gpt-4o-2024-08-06",
+      "status": "deprecated",
+      "announced_at": "2026-10-14",
+      "shutdown_at": "2027-01-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-luna",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-2024-11-20",
+      "status": "deprecated",
+      "announced_at": "2026-10-14",
+      "shutdown_at": "2027-01-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-luna",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-audio",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-audio-preview",
+      "status": "retired",
+      "announced_at": "2025-09-15",
+      "shutdown_at": "2026-05-07",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-audio-preview-2024-10-01",
+      "status": "retired",
+      "announced_at": "2025-06-10",
+      "shutdown_at": "2025-10-10",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-2024-07-18",
+      "status": "deprecated",
+      "announced_at": "2026-10-14",
+      "shutdown_at": "2027-01-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-luna",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-audio",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-audio-preview",
+      "status": "retired",
+      "announced_at": "2025-09-15",
+      "shutdown_at": "2026-05-07",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-realtime",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-realtime-preview",
+      "status": "retired",
+      "announced_at": "2025-09-15",
+      "shutdown_at": "2026-05-07",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-search-preview-2025-03-11",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-transcribe",
+      "status": "deprecated",
+      "announced_at": "2026-08-26",
+      "shutdown_at": "2027-02-26",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-live-transcribe",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-transcribe",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-transcribe-2025-03-20",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-4o-mini-transcribe-2025-12-15",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-tts-2025-03-20",
+      "status": "deprecated",
+      "announced_at": "2026-10-01",
+      "shutdown_at": "2027-01-06",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini-tts-2025-12-15",
+      "status": "deprecated",
+      "announced_at": "2026-10-01",
+      "shutdown_at": "2027-01-06",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-realtime",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-realtime-preview",
+      "status": "retired",
+      "announced_at": "2025-09-15",
+      "shutdown_at": "2026-05-07",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-realtime-preview-2024-10-01",
+      "status": "retired",
+      "announced_at": "2025-06-10",
+      "shutdown_at": "2025-10-10",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-realtime-preview-2024-12-17",
+      "status": "retired",
+      "announced_at": "2025-09-15",
+      "shutdown_at": "2026-05-07",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-realtime-preview-2025-06-03",
+      "status": "retired",
+      "announced_at": "2025-09-15",
+      "shutdown_at": "2026-05-07",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-search-preview-2025-03-11",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-transcribe",
+      "status": "deprecated",
+      "announced_at": "2026-08-26",
+      "shutdown_at": "2027-02-26",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-live-transcribe",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-transcribe",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-4o-transcribe-diarize",
+      "status": "deprecated",
+      "announced_at": "2026-08-26",
+      "shutdown_at": "2027-02-26",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-live-transcribe",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-transcribe",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5-2025-08-07",
+      "status": "deprecated",
+      "announced_at": "2026-06-11",
+      "shutdown_at": "2026-12-11",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5-chat-latest",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5-codex",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5-mini-2025-08-07",
+      "status": "deprecated",
+      "announced_at": "2026-06-11",
+      "shutdown_at": "2026-12-11",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5-nano-2025-08-07",
+      "status": "deprecated",
+      "announced_at": "2026-06-11",
+      "shutdown_at": "2026-12-11",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-luna",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5-pro-2025-10-06",
+      "status": "deprecated",
+      "announced_at": "2026-06-11",
+      "shutdown_at": "2026-12-11",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.1",
+      "status": "deprecated",
+      "announced_at": "2026-10-01",
+      "shutdown_at": "2027-04-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.1-chat-latest",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.1-codex",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.1-codex-max",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.1-codex-mini",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.2-chat-latest",
+      "status": "retired",
+      "announced_at": "2026-05-08",
+      "shutdown_at": "2026-08-10",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.2-codex",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.3-chat-latest",
+      "status": "retired",
+      "announced_at": "2026-05-08",
+      "shutdown_at": "2026-08-10",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.3-codex",
+      "status": "deprecated",
+      "announced_at": "2026-10-01",
+      "shutdown_at": "2027-04-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-5.4-cyber",
+      "status": "retired",
+      "announced_at": "2026-09-11",
+      "shutdown_at": "2026-10-01",
+      "recommended_replacements": [],
+      "notes": "Official page says the replacement is account-dependent (“most capable cyber model available to you”); no fixed model ID inferred."
+    },
+    {
+      "model_id": "gpt-5.4-nano",
+      "status": "deprecated",
+      "announced_at": "2026-10-01",
+      "shutdown_at": "2027-04-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-6-luna",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-audio",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-audio-mini",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-audio-mini-2025-10-06",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-audio-1.5",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-image-1",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-image-2.5-sunburst",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-2.5-flare",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date. The official source lists two alternatives; no single automatic replacement is selected."
+    },
+    {
+      "model_id": "gpt-image-1-mini",
+      "status": "deprecated",
+      "announced_at": "2026-06-02",
+      "shutdown_at": "2026-12-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-image-2.5-sunburst",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-2.5-flare",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-image-1.5",
+      "status": "deprecated",
+      "announced_at": "2026-06-02",
+      "shutdown_at": "2026-12-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-image-2.5-sunburst",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-image-2.5-flare",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-realtime",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-realtime-mini",
+      "status": "deprecated",
+      "announced_at": "2026-07-20",
+      "shutdown_at": "2027-01-20",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "gpt-realtime-mini-2025-10-06",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "o1-2024-12-17",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "o1-mini",
+      "status": "retired",
+      "announced_at": "2025-04-28",
+      "shutdown_at": "2025-10-27",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "o4-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "o1-preview",
+      "status": "retired",
+      "announced_at": "2025-04-28",
+      "shutdown_at": "2025-07-28",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "o3",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "o1-pro-2025-03-19",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date. The documented migration also specifies reasoning.mode: pro."
+    },
+    {
+      "model_id": "o3-2025-04-16",
+      "status": "deprecated",
+      "announced_at": "2026-06-11",
+      "shutdown_at": "2026-12-11",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "o3-deep-research-2025-06-26",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "o3-mini-2025-01-31",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "o3-pro-2025-06-10",
+      "status": "deprecated",
+      "announced_at": "2026-06-11",
+      "shutdown_at": "2026-12-11",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "o4-mini-2025-04-16",
+      "status": "deprecated",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-10-23",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-terra",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official deprecations page lists shutdown on 2026-10-23; re-check live status after that date."
+    },
+    {
+      "model_id": "o4-mini-deep-research-2025-06-26",
+      "status": "retired",
+      "announced_at": "2026-04-22",
+      "shutdown_at": "2026-07-23",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-5.6-sol",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "sora-2",
+      "status": "retired",
+      "announced_at": "2026-03-24",
+      "shutdown_at": "2026-09-24",
+      "recommended_replacements": [],
+      "notes": "Official source lists shutdown on 2026-09-24; no replacement is listed on the deprecations page."
+    },
+    {
+      "model_id": "sora-2-2025-10-06",
+      "status": "retired",
+      "announced_at": "2026-03-24",
+      "shutdown_at": "2026-09-24",
+      "recommended_replacements": [],
+      "notes": "Official source lists shutdown on 2026-09-24; no replacement is listed on the deprecations page."
+    },
+    {
+      "model_id": "sora-2-2025-12-08",
+      "status": "retired",
+      "announced_at": "2026-03-24",
+      "shutdown_at": "2026-09-24",
+      "recommended_replacements": [],
+      "notes": "Official source lists shutdown on 2026-09-24; no replacement is listed on the deprecations page."
+    },
+    {
+      "model_id": "sora-2-pro",
+      "status": "retired",
+      "announced_at": "2026-03-24",
+      "shutdown_at": "2026-09-24",
+      "recommended_replacements": [],
+      "notes": "Official source lists shutdown on 2026-09-24; no replacement is listed on the deprecations page."
+    },
+    {
+      "model_id": "sora-2-pro-2025-10-06",
+      "status": "retired",
+      "announced_at": "2026-03-24",
+      "shutdown_at": "2026-09-24",
+      "recommended_replacements": [],
+      "notes": "Official source lists shutdown on 2026-09-24; no replacement is listed on the deprecations page."
+    },
+    {
+      "model_id": "text-moderation-007",
+      "status": "retired",
+      "announced_at": "2025-04-28",
+      "shutdown_at": "2025-10-27",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "omni-moderation",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "text-moderation-latest",
+      "status": "retired",
+      "announced_at": "2025-04-28",
+      "shutdown_at": "2025-10-27",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "omni-moderation",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "text-moderation-stable",
+      "status": "retired",
+      "announced_at": "2025-04-28",
+      "shutdown_at": "2025-10-27",
+      "shutdown_date_kind": "confirmed",
+      "recommended_replacements": [
+        {
+          "model_id": "omni-moderation",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "tts-1",
+      "status": "deprecated",
+      "announced_at": "2026-10-01",
+      "shutdown_at": "2027-01-06",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "tts-1-hd",
+      "status": "deprecated",
+      "announced_at": "2026-10-01",
+      "shutdown_at": "2027-01-06",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-realtime-2.1-mini",
+          "authority": "provider"
+        }
+      ]
+    },
+    {
+      "model_id": "whisper-1",
+      "status": "deprecated",
+      "announced_at": "2026-08-26",
+      "shutdown_at": "2027-02-26",
+      "recommended_replacements": [
+        {
+          "model_id": "gpt-live-transcribe",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gpt-transcribe",
+          "authority": "provider"
+        }
+      ]
+    }
+  ],
+  "shutdown_date_kind": "confirmed"
+}

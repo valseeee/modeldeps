@@ -1,0 +1,65 @@
+{
+  "name": "modeldeps-cli",
+  "version": "0.4.0",
+  "description": "Local-first AI model lifecycle inventory, provenance, and evaluation-gated migration evidence.",
+  "type": "module",
+  "bin": {
+    "modeldeps": "./dist/cli.js"
+  },
+  "files": [
+    "dist/**",
+    "!dist/test/**",
+    "data/**",
+    "scripts/benchmark.mjs",
+    "scripts/benchmark-real-repos.mjs",
+    "scripts/benchmark-support.mjs",
+    "README.md",
+    "README.zh-CN.md",
+    "docs/VALIDATION.md",
+    "LICENSE",
+    "docs/HANDOFF_STATUS.zh-CN.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/test/*.test.js scripts/benchmark-support.test.mjs",
+    "check": "npm test && npm run benchmark",
+    "demo:healthy": "node dist/cli.js check demo/repository/healthy --registry demo/registry.fixture.json",
+    "demo:retired": "node dist/cli.js check demo/repository/retired --registry demo/registry.fixture.json",
+    "demo:plan": "node dist/cli.js plan demo/repository/migration-breaks-tool-use --registry demo/registry.fixture.json --output demo/migration-plan.json",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run build",
+    "benchmark": "npm run build && node scripts/benchmark.mjs",
+    "benchmark:repos": "npm run build && node scripts/benchmark-real-repos.mjs",
+    "verify:delivery": "node scripts/verify-delivery.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "typescript": "^5.8.3"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valseeee/modeldeps.git"
+  },
+  "homepage": "https://github.com/valseeee/modeldeps#readme",
+  "bugs": {
+    "url": "https://github.com/valseeee/modeldeps/issues"
+  },
+  "keywords": [
+    "ai",
+    "devtools",
+    "evals",
+    "github-actions",
+    "llm",
+    "migration-evidence",
+    "model-deprecation",
+    "model-lifecycle",
+    "model-migration",
+    "provenance",
+    "scanner-benchmark",
+    "supply-chain"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1",
+  "generated_at": "2026-10-23T00:00:00.000Z",
+  "models": [
+    {
+      "provider": "openai",
+      "surface": "openai-api",
+      "model_id": "openai-demo-retired",
+      "status": "retired",
+      "announced_at": "2026-08-01",
+      "shutdown_at": "2026-10-01",
+      "recommended_replacements": [
+        {
+          "model_id": "openai-demo-next",
+          "authority": "provider",
+          "risk": "R3",
+          "changes": ["tool_contract_change"]
+        }
+      ],
+      "source": {
+        "kind": "fixture",
+        "url": "fixture://modeldeps/demo/openai",
+        "observed_at": "2026-10-23T00:00:00.000Z"
+      }
+    },
+    {
+      "provider": "openai",
+      "surface": "openai-api",
+      "model_id": "openai-demo-next",
+      "status": "active",
+      "recommended_replacements": [],
+      "source": {
+        "kind": "fixture",
+        "url": "fixture://modeldeps/demo/openai",
+        "observed_at": "2026-10-23T00:00:00.000Z"
+      }
+    },
+    {
+      "provider": "anthropic",
+      "surface": "anthropic-api",
+      "model_id": "anthropic-demo-legacy",
+      "status": "deprecated",
+      "announced_at": "2026-09-01",
+      "shutdown_at": "2026-11-20",
+      "recommended_replacements": [
+        {
+          "model_id": "anthropic-demo-next",
+          "authority": "provider",
+          "risk": "R2",
+          "changes": ["request_schema_change"]
+        }
+      ],
+      "source": {
+        "kind": "fixture",
+        "url": "fixture://modeldeps/demo/anthropic",
+        "observed_at": "2026-10-23T00:00:00.000Z"
+      }
+    },
+    {
+      "provider": "anthropic",
+      "surface": "anthropic-api",
+      "model_id": "anthropic-demo-next",
+      "status": "active",
+      "recommended_replacements": [],
+      "source": {
+        "kind": "fixture",
+        "url": "fixture://modeldeps/demo/anthropic",
+        "observed_at": "2026-10-23T00:00:00.000Z"
+      }
+    },
+    {
+      "provider": "google",
+      "surface": "gemini-api",
+      "model_id": "gemini-demo-active",
+      "status": "active",
+      "recommended_replacements": [],
+      "source": {
+        "kind": "fixture",
+        "url": "fixture://modeldeps/demo/google",
+        "observed_at": "2026-10-23T00:00:00.000Z"
+      }
+    }
+  ]
+}

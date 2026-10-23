@@ -1,0 +1,47 @@
+# Local hardening update (2026-10-23)
+
+Current 0.4.0 hardening supersedes earlier prune/live-sync claims. Prune is disabled; live adapters remain experimental. See README and reports/round2/DELIVERY.md for executed evidence. Added workspace/config-bound eval, patch rollback, resource-bounded benchmark with reviewed commit-aware gold labels, grouped metrics, full Actions pins, separated release permissions and package smoke validation.
+
+# Changelog
+
+## 0.4.0 — live lifecycle sync and real-repository benchmark harness
+
+- Add live HTML sync for Anthropic and Gemini official lifecycle pages with host allowlisting, redirect validation, request timeout/size limits, source-byte SHA-256, and fail-closed minimum-row checks.
+- Preserve provider-specific semantics: Anthropic retirement dates are tentative; Gemini dates remain earliest-possible and never imply a model is retired merely because a date passed.
+- Add optional `--prune-missing` only for live Anthropic/Gemini sync; default sync remains additive.
+- Add a 20-repository public OSS benchmark manifest and a benchmark harness that records exact Git commits, emits candidate labels, and computes precision/recall only after human-reviewed labels exist.
+- Add weekly lifecycle-refresh PR workflow and tag-driven GitHub Release automation. Lifecycle changes are not auto-merged and npm is not automatically published.
+- Add live-parser fixtures and a real-repository benchmark harness test.
+
+## 0.3.0 — plan integrity and safer local edits
+
+- Recompute the migration plan from the current repository and registry before `verify` or `apply`; hand-edited risk levels, required gates, source provenance, or occurrences are blocked.
+- Reject unsafe repository paths and symlinked parent components before hashing or editing files.
+- Preserve CRLF line endings when applying exact edits.
+- Apply configured provider filters consistently to both `scan` and `check`.
+- Ignore `.modeldeps/` generated plans/evidence by default so generated artifacts do not become scanner input.
+- Treat an empty registry as stale when strict stale-evidence enforcement is enabled.
+- Validate day thresholds and evaluation timeouts as integers with valid ranges; enforce configured `require_eval_on` change types in migration planning.
+- Bundle the compiled CLI in the GitHub Action so consuming repositories do not need a runtime `npm ci`/build step.
+- Add regression tests for plan-tampering attempts, provider filters, symlink traversal, CRLF preservation, empty registries, and configuration bounds.
+
+## 0.2.0 — reviewed lifecycle data and migration evidence
+
+- Bundle 169 reviewed official lifecycle records (98 OpenAI, 21 Anthropic, 50 Gemini), each linked to a versioned snapshot artifact.
+- Preserve shutdown-date semantics: confirmed dates are distinct from Google's earliest-possible dates; a passed earliest-possible date warns rather than falsely asserting retirement.
+- Add strict stale-evidence policy enforcement via `--strict-stale`.
+- Improve scanner precision by avoiding model-like snippets embedded in JavaScript/TypeScript string literals; expand the curated scanner regression corpus to 36 cases.
+- Add registry-to-snapshot digest consistency tests and tests for earliest-possible shutdown dates.
+- Document that the benchmark is a small curated regression corpus, not a real-world accuracy guarantee.
+- Add reproducible install/release workflow guidance; no GitHub or npm publishing is performed by this build.
+
+## 0.1.0 — initial implementation
+
+- Add local-first model reference scanning for common source and configuration files.
+- Add canonical provider/surface/model registry schema and source provenance validation.
+- Add lifecycle policy checks, shutdown thresholds, JSON/SARIF output, and GitHub step summary.
+- Add migration planning with risk labels, exact-edit safeguards, and explicit user-owned eval gates.
+- Add OpenAI Models API shutdown-date import and reviewed-snapshot ingestion for Anthropic/Gemini.
+- Add deterministic synthetic demo fixtures, tests, GitHub composite action, and architecture/maintenance docs.
+
+The 0.1.0 release did not ship a real provider lifecycle dataset; see the 0.2.0 entry above for the reviewed snapshot added later.

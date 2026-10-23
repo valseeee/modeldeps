@@ -1,0 +1,18 @@
+node_modules/
+coverage/
+*.log
+.modeldeps/
+demo/migration-plan.json
+.env
+
+demo/migration-plan.json.sha256
+.modeldeps/evidence.json
+.modeldeps/evidence.json.sha256
+
+# Local audit records and release products are not public source.
+reports/
+release/
+*.tgz
+*.zip
+.env.*
+/smoke.json

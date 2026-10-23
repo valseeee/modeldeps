@@ -1,0 +1,29 @@
+version: 1
+providers:
+  - openai
+  - anthropic
+  - google
+policy:
+  fail_on:
+    - retired
+  warn_days_before_shutdown: 90
+  fail_days_before_shutdown: 30
+  fail_on_unknown: false
+  max_source_age_days: 30
+  require_eval_on:
+    - family_change
+    - endpoint_change
+    - tool_contract_change
+ignore:
+  - "**/node_modules/**"
+  - "**/.git/**"
+  - "**/.modeldeps/**"
+  - "**/dist/**"
+  - "**/coverage/**"
+  - "**/docs/**"
+  - "data/**"
+  - "scripts/**"
+  - "demo/**"
+evaluations:
+  default:
+    timeout_seconds: 600

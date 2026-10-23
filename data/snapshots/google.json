@@ -1,0 +1,671 @@
+{
+  "provider": "google",
+  "surface": "gemini-api",
+  "source_url": "https://ai.google.dev/gemini-api/docs/deprecations",
+  "observed_at": "2026-10-22T23:09:45Z",
+  "models": [
+    {
+      "model_id": "embedding-001",
+      "status": "deprecated",
+      "shutdown_at": "2025-10-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-embedding-2",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists October 30, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "embedding-2-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-08-10",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-embedding-2",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists August 10, 2026 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "embedding-gecko-001",
+      "status": "deprecated",
+      "shutdown_at": "2025-10-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-embedding-2",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists October 30, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.6-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists June 1, 2026 as shutdown date; current exact serving status should be re-checked. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.6-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists June 1, 2026 as shutdown date; current exact serving status should be re-checked. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash-lite",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-flash-lite",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists June 1, 2026 as shutdown date; current exact serving status should be re-checked. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash-lite-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-01",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-flash-lite",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists June 1, 2026 as shutdown date; current exact serving status should be re-checked. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash-lite-preview",
+      "status": "deprecated",
+      "shutdown_at": "2025-12-09",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-flash-lite",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists December 9, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash-lite-preview-02-05",
+      "status": "deprecated",
+      "shutdown_at": "2025-12-09",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-flash-lite",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists December 9, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash-live-001",
+      "status": "deprecated",
+      "shutdown_at": "2025-12-09",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-live",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists December 9, 2025 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.0-flash-preview-image-generation",
+      "status": "deprecated",
+      "shutdown_at": "2025-11-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-nano-banana-2.1",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists November 14, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-computer-use-preview-10-2025",
+      "status": "deprecated",
+      "shutdown_at": "2026-07-28",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists July 28, 2026 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-flash-image",
+      "status": "deprecated",
+      "shutdown_at": "2027-03-15",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-flash-lite-image",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-2.5-flash-image-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-01-15",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-nano-banana-2.1",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists January 15, 2026 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-flash-lite-preview-09-2025",
+      "status": "deprecated",
+      "shutdown_at": "2026-03-31",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-flash-lite",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists March 31, 2026 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-flash-native-audio-preview-12-2025",
+      "status": "deprecated",
+      "shutdown_at": "2026-11-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-live",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-2.5-flash-preview-05-20",
+      "status": "deprecated",
+      "shutdown_at": "2025-11-18",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.6-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists November 18, 2025 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-flash-preview-09-25",
+      "status": "deprecated",
+      "shutdown_at": "2026-02-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.6-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists February 17, 2026 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-flash-preview-tts",
+      "status": "deprecated",
+      "shutdown_at": "2026-11-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-flash-tts",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gemini-3.8-flash-lite-tts",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-2.5-pro-preview-03-25",
+      "status": "deprecated",
+      "shutdown_at": "2025-12-02",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-pro-preview",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists December 2, 2025 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-pro-preview-05-06",
+      "status": "deprecated",
+      "shutdown_at": "2025-12-02",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-pro-preview",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists December 2, 2025 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-pro-preview-06-05",
+      "status": "deprecated",
+      "shutdown_at": "2025-12-02",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-pro-preview",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists December 2, 2025 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-2.5-pro-preview-tts",
+      "status": "deprecated",
+      "shutdown_at": "2026-11-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-flash-tts",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gemini-3.8-flash-lite-tts",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-3-pro-image-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-25",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3-pro-image",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists June 25, 2026 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-3-pro-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-03-09",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-pro-preview",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official Gemini deprecations page describes listed shutdown dates as the earliest possible retirement date. This snapshot does not infer an exact retired state from the date alone; re-check the current official row/status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-3.1-flash-image-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-25",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-nano-banana-2.1",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists June 25, 2026 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-3.1-flash-lite",
+      "status": "deprecated",
+      "shutdown_at": "2027-05-07",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.5-flash-lite",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-3.1-flash-lite-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-05-25",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.1-flash-lite",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official Gemini deprecations page describes listed shutdown dates as the earliest possible retirement date. This snapshot does not infer an exact retired state from the date alone; re-check the current official row/status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-3.1-flash-live-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-11-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-live",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-3.1-flash-tts-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-11-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-flash-tts",
+          "authority": "provider"
+        },
+        {
+          "model_id": "gemini-3.8-flash-lite-tts",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-embedding-001",
+      "status": "deprecated",
+      "shutdown_at": "2028-05-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-embedding-2",
+          "authority": "provider"
+        }
+      ],
+      "shutdown_date_kind": "earliest-possible",
+      "notes": "The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down."
+    },
+    {
+      "model_id": "gemini-embedding-exp",
+      "status": "deprecated",
+      "shutdown_at": "2025-10-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-embedding-2",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists October 30, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-embedding-exp-03-07",
+      "status": "deprecated",
+      "shutdown_at": "2025-10-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-embedding-2",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists October 30, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-live-2.5-flash-preview",
+      "status": "deprecated",
+      "shutdown_at": "2025-12-09",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-3.8-live",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists December 9, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-omni-flash-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-10-22",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official Gemini deprecations page describes listed shutdown dates as the earliest possible retirement date. This snapshot does not infer an exact retired state from the date alone; re-check the current official row/status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-robotics-er-1.5-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-04-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-robotics-er-2-preview",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official Gemini deprecations page describes listed shutdown dates as the earliest possible retirement date. This snapshot does not infer an exact retired state from the date alone; re-check the current official row/status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "gemini-robotics-er-1.6-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-08-31",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-robotics-er-2-preview",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official Gemini deprecations page describes listed shutdown dates as the earliest possible retirement date. This snapshot does not infer an exact retired state from the date alone; re-check the current official row/status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "imagen-3.0-generate-002",
+      "status": "deprecated",
+      "shutdown_at": "2025-11-10",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-nano-banana-2.1",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official Gemini deprecations table lists gemini-nano-banana-2.1 as the recommended replacement; its shutdown date is an earliest-possible date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "imagen-4.0-fast-generate-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-08-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-nano-banana-2.1",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists August 17, 2026 as shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "imagen-4.0-generate-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-08-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-nano-banana-2.1",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists August 17, 2026 as shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "imagen-4.0-ultra-generate-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-08-17",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-nano-banana-2.1",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists August 17, 2026 as shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "text-embedding-004",
+      "status": "deprecated",
+      "shutdown_at": "2026-01-14",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-embedding-2",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists January 14, 2026 as shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-2.0-generate-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists June 30, 2026 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-3.0-fast-generate-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists June 30, 2026 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-3.0-fast-generate-preview",
+      "status": "deprecated",
+      "shutdown_at": "2025-11-12",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists November 12, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-3.0-generate-001",
+      "status": "deprecated",
+      "shutdown_at": "2026-06-30",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists June 30, 2026 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-3.0-generate-preview",
+      "status": "deprecated",
+      "shutdown_at": "2025-11-12",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "The official page lists November 12, 2025 as the earliest possible shutdown date. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-3.1-fast-generate-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-10-22",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists October 22, 2026 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-3.1-generate-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-10-22",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists October 22, 2026 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    },
+    {
+      "model_id": "veo-3.1-lite-generate-preview",
+      "status": "deprecated",
+      "shutdown_at": "2026-10-22",
+      "recommended_replacements": [
+        {
+          "model_id": "gemini-omni-1.1-flash",
+          "authority": "provider"
+        }
+      ],
+      "notes": "Official page lists October 22, 2026 as the earliest shutdown date; re-check exact serving status. The date is an earliest-possible shutdown date per the official Gemini deprecations page; a past date alone does not prove the endpoint is already shut down.",
+      "shutdown_date_kind": "earliest-possible"
+    }
+  ],
+  "shutdown_date_kind": "earliest-possible"
+}

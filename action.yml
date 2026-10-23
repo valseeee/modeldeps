@@ -1,0 +1,54 @@
+name: ModelDeps model lifecycle check
+description: Scan model references and enforce a deterministic lifecycle policy using provenance-bearing lifecycle snapshots.
+author: ModelDeps maintainers
+inputs:
+  path:
+    description: Repository path to scan.
+    required: false
+    default: .
+  registry-path:
+    description: Optional registry JSON path relative to the checked-out repository. If omitted, the bundled reviewed lifecycle snapshot is used; refresh it regularly.
+    required: false
+    default: ""
+  fail-in-days:
+    description: Fail when a scheduled shutdown is within this many days.
+    required: false
+    default: "30"
+  format:
+    description: "Output format: text, json, or sarif."
+    required: false
+    default: text
+  strict-unknown:
+    description: Fail if a discovered model has no matching lifecycle record.
+    required: false
+    default: "false"
+  strict-stale:
+    description: Fail if the registry or source evidence exceeds the configured max_source_age_days.
+    required: false
+    default: "false"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      with:
+        node-version: 22
+    - name: Verify bundled CLI is present
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: test -f dist/cli.js || { echo "ModelDeps dist/cli.js is missing. Commit the built dist/ directory with the release." >&2; exit 2; }
+    - name: Check model lifecycle
+      shell: bash
+      env:
+        MODELDEPS_PATH: ${{ inputs.path }}
+        MODELDEPS_REGISTRY: ${{ inputs.registry-path }}
+        MODELDEPS_FAIL_IN_DAYS: ${{ inputs.fail-in-days }}
+        MODELDEPS_FORMAT: ${{ inputs.format }}
+        MODELDEPS_STRICT_UNKNOWN: ${{ inputs.strict-unknown }}
+        MODELDEPS_STRICT_STALE: ${{ inputs.strict-stale }}
+      run: |
+        args=(check "$MODELDEPS_PATH" --fail-in "$MODELDEPS_FAIL_IN_DAYS" --format "$MODELDEPS_FORMAT")
+        if [[ -n "$MODELDEPS_REGISTRY" ]]; then args+=(--registry "$MODELDEPS_REGISTRY"); fi
+        if [[ "$MODELDEPS_STRICT_UNKNOWN" == "true" ]]; then args+=(--strict-unknown); fi
+        if [[ "$MODELDEPS_STRICT_STALE" == "true" ]]; then args+=(--strict-stale); fi
+        node "$GITHUB_ACTION_PATH/dist/cli.js" "${args[@]}"
+

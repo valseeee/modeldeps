@@ -1,0 +1,24 @@
+name: AI model lifecycle
+on:
+  pull_request:
+  schedule:
+    - cron: "17 2 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  modeldeps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: YOUR_GITHUB_OWNER/modeldeps@v0.4.0
+        with:
+          path: .
+          registry-path: .modeldeps/registry.json
+          fail-in-days: "30"
+          strict-stale: "true"
+          format: text
