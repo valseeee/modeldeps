@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import os from "node:os";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { loadRegistry } from "../registry.js";
@@ -37,6 +39,28 @@ test("reviewed-snapshot provenance digests match the exact reviewed JSON artifac
         const records = registry.models.filter((record) => record.provider === provider && record.source.evidence_mode === "reviewed-snapshot");
         for (const record of records)
             assert.equal(record.source.snapshot_sha256, expected, `${provider}/${record.model_id}`);
+    }
+});
+test("Git checkout preserves reviewed snapshot bytes with Windows automatic line endings", async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), "modeldeps-snapshot-checkout-"));
+    const repo = path.join(root, "repo");
+    const checkout = path.join(root, "checkout");
+    const providers = ["openai", "anthropic", "google"];
+    try {
+        await mkdir(path.join(repo, "data", "snapshots"), { recursive: true });
+        await writeFile(path.join(repo, ".gitattributes"), await readFile(fileURLToPath(new URL("../../.gitattributes", import.meta.url))));
+        for (const provider of providers) {
+            await writeFile(path.join(repo, "data", "snapshots", `${provider}.json`), await readFile(path.join(snapshotsDir, `${provider}.json`)));
+        }
+        execFileSync("git", ["init", "-q", repo]);
+        execFileSync("git", ["-c", "core.autocrlf=false", "add", ".gitattributes", "data/snapshots"], { cwd: repo });
+        execFileSync("git", ["-c", "core.autocrlf=true", "checkout-index", `--prefix=${checkout.replace(/\\/g, "/")}/`, "--all"], { cwd: repo });
+        for (const provider of providers) {
+            assert.deepEqual(await readFile(path.join(checkout, "data", "snapshots", `${provider}.json`)), await readFile(path.join(snapshotsDir, `${provider}.json`)), provider);
+        }
+    }
+    finally {
+        await rm(root, { recursive: true, force: true });
     }
 });
 test("preserves provider-specific shutdown date semantics", async () => {

@@ -1,6 +1,6 @@
-# Local hardening update (2026-10-23)
+# Local hardening update (2026-10-24)
 
-Current 0.4.0 hardening supersedes earlier prune/live-sync claims. Prune is disabled; live adapters remain experimental. See README and reports/round2/DELIVERY.md for executed evidence. Added workspace/config-bound eval, patch rollback, resource-bounded benchmark with reviewed commit-aware gold labels, grouped metrics, full Actions pins, separated release permissions and package smoke validation.
+Current 0.4.0 hardening supersedes earlier prune/live-sync claims. Prune is disabled; live adapters remain experimental. See README and docs/VALIDATION.md for executed evidence. Added workspace/config-bound eval, patch rollback, resource-bounded benchmark with reviewed commit-aware gold labels, grouped metrics, full Actions pins, separated release permissions and package smoke validation. Preserve snapshot bytes across Git checkouts to prevent Windows line-ending conversion from invalidating provenance hashes; regression tests exercise an actual automatic-line-ending checkout. CI retains executed verification logs and tests composite-action consumers on Linux and Windows.
 
 # Changelog
 

@@ -1,0 +1,2 @@
+# Reviewed snapshot provenance hashes bind exact bytes, including line endings.
+/data/snapshots/*.json -text
