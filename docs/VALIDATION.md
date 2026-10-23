@@ -6,6 +6,8 @@ Provider adapters are implemented and offline-tested. By owner instruction, live
 
 Real public repositories have been cloned and statically scanned at exact commits. The full 20-entry attempt records successes/failures independently; a corpus list is not a success count. No human gold annotations were supplied, so precision/recall/F1 remain N/A. See the benchmark annotation protocol. Candidate examples are not automatically accepted as correct.
 
+The [public benchmark inventory](BENCHMARK_RESULTS.md) lists the 13 fixed commits, candidate counts and explicit scope exclusions without redistributing cloned code or private audit logs.
+
 Remote GitHub CI/Release, Linux/macOS execution, the composite-action consumer and authenticated OpenAI sync remain external acceptance checks until actual results are recorded. CI includes a separate Linux/Windows consumer job that invokes the composite action with healthy and retired fixtures. Actionlint and complete SARIF JSON Schema validation were executed locally; workflow configuration is not proof of remote execution. The owner has authorized a public source upload; no release tag, GitHub Release or npm publication is authorized.
 
 Limits: Git disk watchdog is sampled, not an OS disk quota. Patch rollback covers process-visible I/O failures, not machine crashes or a malicious concurrent filesystem actor. Workspace evidence excludes dependency/build/report/generated trees and external services/OS state; it is not a signed attestation. High-risk patches remain manual. These limitations are explicit behavior boundaries, not claims of universal migration safety.

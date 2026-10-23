@@ -22,6 +22,9 @@ function run(name, executable, args, expected=0) {
  results.push({name,command:[executable,...args],exit_code:r.status,expected,matched:r.status===expected,error:r.error?.message});
  if (['install','tests','build'].includes(name) && r.status!==expected) {
    writeFileSync(path.join(report,'final-commands.json'),JSON.stringify({at:new Date().toISOString(),results,stopped:'Required prerequisite failed; no packaging attempted'},null,2));
+   console.error(`${name}: FAIL (exit ${r.status}; expected ${expected})`);
+   if(r.error) console.error(r.error.message);
+   console.error(((r.stdout??'')+(r.stderr??'')).slice(-16000));
    process.exit(1);
  }
  return r;

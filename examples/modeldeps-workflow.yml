@@ -11,14 +11,11 @@ jobs:
   modeldeps:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - uses: YOUR_GITHUB_OWNER/modeldeps@v0.4.0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      # Update this reviewed full commit pin when upgrading ModelDeps.
+      - uses: valseeee/modeldeps@73387f41293850af7bff73c8b47561306e5c84af # 0.4.0 source
         with:
           path: .
-          registry-path: .modeldeps/registry.json
           fail-in-days: "30"
           strict-stale: "true"
           format: text
