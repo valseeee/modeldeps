@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { scoreFindings, groupedScores, treeUsage, boundedGit } from './benchmark-support.mjs';
 import { mkdtemp, writeFile, rm } from 'node:fs/promises';
+import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 test('scoring uses line/column, exposes false positives/negatives and N/A', () => {
@@ -21,6 +22,24 @@ test('repository disk/file budgets reject over-budget tree',async()=>{
  const dir=await mkdtemp(path.join(os.tmpdir(),'modeldeps-budget-'));
  try { await writeFile(path.join(dir,'a'),'12345'); await assert.rejects(treeUsage(dir,4,20),/budget/); await assert.rejects(treeUsage(dir,100,0),/budget/); }
  finally { await rm(dir,{recursive:true,force:true}); }
+});
+
+test('disk watchdog tolerates disappearing Git lock files but rejects other I/O failures',async(t)=>{
+ const dir=await mkdtemp(path.join(os.tmpdir(),'modeldeps-lock-race-'));
+ const lock=path.join(dir,'HEAD.lock');
+ const stat=fs.lstat;
+ try {
+  await writeFile(lock,'temporary'); await writeFile(path.join(dir,'keep'),'12345');
+  const transient=t.mock.method(fs,'lstat',async file=>{
+   if(file===lock) await rm(lock);
+   return stat(file);
+  });
+  assert.deepEqual(await treeUsage(dir,100,10),{bytes:5,files:1});
+  transient.mock.restore();
+  const denied=t.mock.method(fs,'lstat',async()=>{throw Object.assign(new Error('denied'),{code:'EACCES'});});
+  await assert.rejects(treeUsage(dir,100,10),/denied/);
+  denied.mock.restore();
+ } finally { await rm(dir,{recursive:true,force:true}); }
 });
 test('Git process obeys timeout',async()=>{
  const dir=await mkdtemp(path.join(os.tmpdir(),'modeldeps-timeout-'));

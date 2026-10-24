@@ -1,17 +1,22 @@
 import { spawn } from 'node:child_process';
-import { readdir, lstat } from 'node:fs/promises';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 export async function treeUsage(root, maxBytes = Infinity, maxFiles = Infinity) {
   let bytes = 0, files = 0;
   async function walk(dir) {
     let entries;
-    try { entries = await readdir(dir, { withFileTypes: true }); } catch (e) { if (e.code === 'ENOENT') return; throw e; }
+    try { entries = await fs.readdir(dir, { withFileTypes: true }); } catch (e) { if (e.code === 'ENOENT') return; throw e; }
     for (const entry of entries) {
       const file = path.join(dir, entry.name);
       if (entry.isSymbolicLink()) continue;
       if (entry.isDirectory()) await walk(file);
-      else if (entry.isFile()) { bytes += (await lstat(file)).size; files++; }
+      else if (entry.isFile()) {
+        let info;
+        try { info = await fs.lstat(file); } catch (e) { if (e.code === 'ENOENT') continue; throw e; }
+        if (!info.isFile()) continue;
+        bytes += info.size; files++;
+      }
       if (bytes > maxBytes || files > maxFiles) throw new Error('Repository resource budget exceeded');
     }
   }
