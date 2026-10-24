@@ -36,13 +36,16 @@ const git = (repo, ...a) => execFileSync('git', ['-c', 'core.hooksPath=/dev/null
 const allActual = [], allExpected = [];
 async function atomic(file, value) { await mkdir(path.dirname(file), { recursive: true }); const tmp = `${file}.tmp`; await writeFile(tmp, JSON.stringify(value, null, 2) + '\n'); await rename(tmp, file); }
 async function checkpoint() {
-  const result = { schema_version: '1.1', generated_at: new Date().toISOString(), scanner_version: '0.4.0', configuration, command: args, node_version: process.version, mode: reports.some(r => r.labeled) ? 'scored' : 'inventory-only', repositories: reports, aggregate: allExpected.length || reports.some(r => r.labeled) ? scoreFindings(allActual, allExpected) : null, groups: Object.fromEntries(['language', 'file_type', 'provider', 'framework'].map(d => [d, groupedScores(allActual, allExpected, d)])), summary: { selected: selected.length, scanned: reports.filter(r => r.status === 'scanned').length, failed: reports.filter(r => r.status === 'failed').length, human_labeled: reports.filter(r => r.labeled).length } };
+  const result = { schema_version: '1.2', generated_at: new Date().toISOString(), scanner_version: '0.4.0', configuration, command: args, node_version: process.version, mode: reports.some(r => r.labeled) ? 'scored' : 'inventory-only', repositories: reports, aggregate: allExpected.length || reports.some(r => r.labeled) ? scoreFindings(allActual, allExpected) : null, groups: Object.fromEntries(['language', 'file_type', 'provider', 'framework'].map(d => [d, groupedScores(allActual, allExpected, d)])), summary: { selected: selected.length, scanned: reports.filter(r => r.status === 'scanned').length, failed: reports.filter(r => r.status === 'failed').length, human_labeled: reports.filter(r => r.labeled).length } };
   if (outputPath) await atomic(outputPath, result); else if (reports.length === selected.length) console.log(JSON.stringify(result, null, 2));
 }
 for (const entry of selected) {
   try {
     if (!entry.name || (!entry.path && !entry.url)) throw new Error('Repo requires name and path or URL');
     if (entry.commit && !/^[a-f0-9]{40}$/.test(entry.commit)) throw new Error('Commit must be a full SHA');
+    const sparsePaths = entry.sparse_paths ?? [];
+    if (!Array.isArray(sparsePaths) || sparsePaths.length > 20 || sparsePaths.some(p => typeof p !== 'string' || !/^[A-Za-z0-9._/-]+$/.test(p) || p.startsWith('/') || p.split('/').some(part => !part || ['.', '..', '.git'].includes(part.toLowerCase())))) throw new Error('sparse_paths must contain safe repository-relative directory paths');
+    if (new Set(sparsePaths).size !== sparsePaths.length) throw new Error('Duplicate sparse checkout paths');
     const repoPath = entry.path ? path.resolve(path.dirname(manifestPath), entry.path) : path.join(cloneRoot, digest(entry.url).slice(0, 16));
     if (!entry.path && flag('--clone')) {
       if (!/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?$/.test(entry.url)) throw new Error('Only public GitHub HTTPS URLs allowed');
@@ -50,8 +53,13 @@ for (const entry of selected) {
       try { git(repoPath, 'rev-parse', 'HEAD'); } catch {
         // Each attempt has a new directory, so an interrupted checkout is never treated as complete.
         const staging = `${repoPath}-${Date.now()}`;
-        await boundedGit(['clone', '--depth', '1', '--no-checkout', entry.url, staging], cloneRoot, staging, limits);
+        await boundedGit(['clone', '--depth', '1', '--no-checkout', ...(sparsePaths.length ? ['--filter=blob:none'] : []), entry.url, staging], cloneRoot, staging, limits);
         if (entry.commit) await boundedGit(['fetch', '--depth', '1', 'origin', entry.commit], staging, staging, limits);
+        if (sparsePaths.length) {
+          for (const p of sparsePaths) if (git(staging, 'cat-file', '-t', `${entry.commit ?? 'HEAD'}:${p}`) !== 'tree') throw new Error('Sparse checkout path is not a repository directory');
+          await boundedGit(['sparse-checkout', 'init', '--cone'], staging, staging, limits);
+          await boundedGit(['sparse-checkout', 'set', '--cone', '--', ...sparsePaths], staging, staging, limits);
+        }
         await boundedGit(['checkout', '--detach', entry.commit ?? 'HEAD'], staging, staging, limits);
         // Preserve incomplete directories for inspection rather than recursively deleting user paths.
         try { await access(repoPath); throw new Error(`Incomplete checkout at ${repoPath}; use a fresh clone root`); } catch(e) { if (e.code !== 'ENOENT') throw e; }
@@ -64,9 +72,14 @@ for (const entry of selected) {
     try { await access(path.join(repoPath, '.git')); } catch { reports.push({ name: entry.name, status: 'skipped', reason: 'No checkout; use --clone' }); await checkpoint(); continue; }
     const commit = git(repoPath, 'rev-parse', 'HEAD');
     if (entry.commit && entry.commit !== commit) throw new Error('Checkout differs from pinned commit');
+    let sparseEnabled = false;
+    try { sparseEnabled = git(repoPath, 'config', '--bool', 'core.sparseCheckout') === 'true'; } catch {}
+    if (sparseEnabled && git(repoPath, 'config', '--bool', 'core.sparseCheckoutCone') !== 'true') throw new Error('Sparse benchmark checkouts must use Git cone mode');
+    const actualSparsePaths = sparseEnabled ? git(repoPath, 'sparse-checkout', 'list').split(/\r?\n/).filter(Boolean) : [];
+    if (sparseEnabled !== (sparsePaths.length > 0) || JSON.stringify([...actualSparsePaths].sort()) !== JSON.stringify([...sparsePaths].sort())) throw new Error('Actual sparse checkout differs from the declared sparse_paths');
     const usage = await treeUsage(repoPath, limits.maxBytes, limits.maxFiles);
     if (git(repoPath, 'status', '--porcelain', '--untracked-files=no')) throw new Error('Dirty benchmark checkout; refusing inaccurate commit attribution');
-    const scan_config = { ignore: entry.ignore ?? [] };
+    const scan_config = { ignore: entry.ignore ?? [], sparse_paths: sparsePaths };
     if (!Array.isArray(scan_config.ignore) || !scan_config.ignore.every(pattern => typeof pattern === 'string')) throw new Error('Repository ignore must be a string list');
     const previous = prior?.repositories?.find(r => r.name === entry.name && r.commit === commit && r.status === 'scanned');
     const reusable = previous && JSON.stringify(prior.configuration) === JSON.stringify(configuration) && JSON.stringify(previous.scan_config) === JSON.stringify(scan_config);
@@ -82,13 +95,13 @@ for (const entry of selected) {
     const report = { name: entry.name, url: entry.url ?? null, commit, scanned_at: new Date().toISOString(), status: 'scanned', scan_config, scope_note: entry.scope_note ?? null, default_branch: (() => { try { return git(repoPath, 'symbolic-ref', 'refs/remotes/origin/HEAD'); } catch { return null; } })(), license, usage, findings: actual, labeled, resumed: Boolean(reusable), ...(labeled ? { score: scoreFindings(actual, expected) } : {}) };
     reports.push(report);
     if (labeled) { allActual.push(...actual.map(f => ({ ...f, file: `${entry.name}/${f.file}` }))); allExpected.push(...expected.map(f => ({ ...f, file: `${entry.name}/${f.file}` }))); }
-    candidates.push({ name: entry.name, url: entry.url, path: entry.path, commit, reviewed: false, framework, ignore: scan_config.ignore, scope_note: entry.scope_note, expected_findings: actual.map(f => ({ ...f, review: 'unreviewed' })) });
-    pinned.push({ name: entry.name, url: entry.url, path: entry.path, commit, framework, ignore: scan_config.ignore, scope_note: entry.scope_note });
+    candidates.push({ name: entry.name, url: entry.url, path: entry.path, commit, reviewed: false, framework, ignore: scan_config.ignore, sparse_paths: sparsePaths, scope_note: entry.scope_note, expected_findings: actual.map(f => ({ ...f, review: 'unreviewed' })) });
+    pinned.push({ name: entry.name, url: entry.url, path: entry.path, commit, framework, ignore: scan_config.ignore, sparse_paths: sparsePaths, scope_note: entry.scope_note });
     console.log(`${entry.name}: ${actual.length} candidates @ ${commit}`);
   } catch (error) { reports.push({ name: entry.name, status: 'failed', reason: error.message }); }
   await checkpoint();
 }
-if (templatePath) await atomic(templatePath, { schema_version: '1.1', note: 'Unreviewed candidates; human review and missed-reference annotation required', repositories: candidates });
+if (templatePath) await atomic(templatePath, { schema_version: '1.2', note: 'Unreviewed candidates; human review and missed-reference annotation required', repositories: candidates });
 if (outputPath) await atomic(`${outputPath}.pins.json`, { repositories: pinned });
 if (reports.some(r => r.status === 'failed')) process.exitCode = 3;
 else if (flag('--require-labels') && (reports.length === 0 || reports.some(r => !r.labeled))) process.exitCode = 1;

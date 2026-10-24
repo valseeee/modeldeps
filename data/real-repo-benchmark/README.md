@@ -37,3 +37,7 @@ Use local `path` or `--clone` and an accessible pinned URL. Scoring matches exac
 ## Explicit scope
 
 An entry may set `ignore: ["exact/path/to/fixture.json"]` and `scope_note`. Scope is exported in reports/candidate/pinned manifests and participates in resume validity. Changing ignore patterns forces a rescan. Declare and review exclusions before scoring; excluded files cannot be counted as verified or used to inflate recall. Local large-repository runs explicitly excluded three oversized test fixtures; full-scope attempts remain recorded as failures.
+
+Large repositories may additionally declare `sparse_paths: ["relative/code/directory"]`. With `--clone`, the harness uses Git's blob-filtered clone and cone-mode sparse checkout while retaining the same disk/file/time limits. Git cone mode also materializes root and ancestor files; these are part of the declared scope. Omitted directories are not scanned or validated. Safe paths, actual Git sparse settings and pinned commits are checked before scanning; an undeclared or mismatched sparse checkout fails. Sparse paths are retained in reports, candidate templates, pinned manifests and resume checks. Changing them cannot reuse old findings.
+
+`scoped-budget-repos.json` is a pinned, explicitly limited alternative for the six previously resource-limited repositories. It does not convert their historical full-acquisition failures into full-repository successes. Use a fresh clone root to reproduce a different checkout scope. Human labels and recall apply only to the recorded scope.

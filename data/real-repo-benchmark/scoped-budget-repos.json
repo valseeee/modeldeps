@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.2",
+  "description": "Pinned, explicitly scoped alternative for six repositories whose full acquisition exceeded the resource budget. This is not full-repository coverage.",
+  "repositories": [
+    {
+      "name": "BerriAI/litellm",
+      "url": "https://github.com/BerriAI/litellm.git",
+      "commit": "428c9f6bf38730518d8ff13273a8d88445f2becc",
+      "sparse_paths": [
+        "litellm/llms"
+      ],
+      "scope_note": "Git cone-mode selected code directories plus root/ancestor files; all omitted directories are outside the benchmark scope.",
+      "reviewed": false
+    },
+    {
+      "name": "pydantic/pydantic-ai",
+      "url": "https://github.com/pydantic/pydantic-ai.git",
+      "commit": "120891d166555a20060650b9e0e699a530808b0d",
+      "sparse_paths": [
+        "pydantic_ai_slim/pydantic_ai/models",
+        "pydantic_ai_slim/pydantic_ai/providers"
+      ],
+      "scope_note": "Git cone-mode selected code directories plus root/ancestor files; all omitted directories are outside the benchmark scope.",
+      "reviewed": false
+    },
+    {
+      "name": "run-llama/llama_index",
+      "url": "https://github.com/run-llama/llama_index.git",
+      "commit": "619d74664e8404612038bc15a1a40c686037277c",
+      "sparse_paths": [
+        "llama-index-core/llama_index/core"
+      ],
+      "scope_note": "Git cone-mode selected code directories plus root/ancestor files; all omitted directories are outside the benchmark scope.",
+      "reviewed": false
+    },
+    {
+      "name": "continuedev/continue",
+      "url": "https://github.com/continuedev/continue.git",
+      "commit": "5522c6f44ca0ac3528b37244818fbfa39b5af470",
+      "sparse_paths": [
+        "core/llm"
+      ],
+      "scope_note": "Git cone-mode selected code directories plus root/ancestor files; all omitted directories are outside the benchmark scope.",
+      "reviewed": false
+    },
+    {
+      "name": "crewAIInc/crewAI",
+      "url": "https://github.com/crewAIInc/crewAI.git",
+      "commit": "07361f6dc5f96d22efe565ff89297d22bce4a90f",
+      "sparse_paths": [
+        "lib/crewai/src/crewai"
+      ],
+      "scope_note": "Git cone-mode selected code directories plus root/ancestor files; all omitted directories are outside the benchmark scope.",
+      "reviewed": false
+    },
+    {
+      "name": "mastra-ai/mastra",
+      "url": "https://github.com/mastra-ai/mastra.git",
+      "commit": "308ca4d3fd58aadaa5121466622cd35df86f3a2c",
+      "sparse_paths": [
+        "packages/core/src/llm",
+        "packages/core/src/agent"
+      ],
+      "scope_note": "Git cone-mode selected code directories plus root/ancestor files; all omitted directories are outside the benchmark scope.",
+      "reviewed": false
+    }
+  ]
+}

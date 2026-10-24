@@ -52,4 +52,48 @@ test("real-repository benchmark records exact commit and scores only reviewed la
         await rm(root, { recursive: true, force: true });
     }
 });
+test("real-repository benchmark validates sparse checkout scope and never resumes changed paths", async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), "modeldeps-sparse-benchmark-"));
+    const repo = path.join(root, "repo");
+    const manifest = path.join(root, "manifest.json");
+    const output = path.join(root, "report.json");
+    try {
+        await mkdir(path.join(repo, "src"), { recursive: true });
+        await mkdir(path.join(repo, "other"));
+        await writeFile(path.join(repo, "src", "agent.ts"), 'const model = "gpt-4o-mini-2024-07-18";\n');
+        await writeFile(path.join(repo, "other", "service.ts"), 'const model = "gpt-4o-mini-2024-07-18";\n');
+        execFileSync("git", ["init", "-q", repo]);
+        execFileSync("git", ["-c", "core.autocrlf=false", "add", "."], { cwd: repo });
+        execFileSync("git", ["-c", "user.name=ModelDeps Test", "-c", "user.email=test@example.invalid", "commit", "-qm", "fixture"], { cwd: repo });
+        execFileSync("git", ["sparse-checkout", "set", "--cone", "src"], { cwd: repo });
+        await assert.rejects(readFile(path.join(repo, "other", "service.ts")), { code: "ENOENT" });
+        const commit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: repo, encoding: "utf8" }).trim();
+        const save = (sparse_paths) => writeFile(manifest, JSON.stringify({ repositories: [{ name: "sparse-fixture", path: repo, commit, ...(sparse_paths ? { sparse_paths } : {}) }] }));
+        const run = (...args) => spawnSync(process.execPath, [script, "--manifest", manifest, "--registry", registry, "--output", output, ...args], { encoding: "utf8" });
+        await save(["src"]);
+        const first = run();
+        assert.equal(first.status, 0, first.stderr);
+        let report = JSON.parse(await readFile(output, "utf8"));
+        assert.deepEqual(report.repositories[0].scan_config.sparse_paths, ["src"]);
+        assert.equal(report.repositories[0].findings[0].file, "src/agent.ts");
+        assert.deepEqual(JSON.parse(await readFile(`${output}.pins.json`, "utf8")).repositories[0].sparse_paths, ["src"]);
+        assert.equal(run("--resume").status, 0);
+        assert.equal(JSON.parse(await readFile(output, "utf8")).repositories[0].resumed, true);
+        execFileSync("git", ["sparse-checkout", "set", "--cone", "other"], { cwd: repo });
+        await save(["other"]);
+        assert.equal(run("--resume").status, 0);
+        report = JSON.parse(await readFile(output, "utf8"));
+        assert.equal(report.repositories[0].resumed, false);
+        assert.equal(report.repositories[0].findings[0].file, "other/service.ts");
+        await save();
+        assert.equal(run("--resume").status, 3);
+        assert.match(JSON.parse(await readFile(output, "utf8")).repositories[0].reason, /declared sparse_paths/);
+        await save(["../outside"]);
+        assert.equal(run("--resume").status, 3);
+        assert.match(JSON.parse(await readFile(output, "utf8")).repositories[0].reason, /safe repository-relative/);
+    }
+    finally {
+        await rm(root, { recursive: true, force: true });
+    }
+});
 //# sourceMappingURL=real-repo-benchmark.test.js.map
