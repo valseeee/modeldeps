@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       # Update this reviewed full commit pin when upgrading ModelDeps.
-      - uses: valseeee/modeldeps@73387f41293850af7bff73c8b47561306e5c84af # 0.4.0 source
+      - uses: valseeee/modeldeps@81e914b94c64b86d755a05eb4658547ee37fead9 # 0.4.0 source, CI verified
         with:
           path: .
           fail-in-days: "30"

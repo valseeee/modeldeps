@@ -58,3 +58,9 @@ jobs:
         if: steps.retired.outcome != 'failure'
         shell: bash
         run: exit 1
+      - name: Consume the uploaded action through its reviewed GitHub commit
+        uses: valseeee/modeldeps@81e914b94c64b86d755a05eb4658547ee37fead9 # 0.4.0 source
+        with:
+          path: demo/repository/healthy
+          registry-path: demo/registry.fixture.json
+          strict-unknown: 'true'

@@ -2,7 +2,7 @@
 
 Recorded on 2026-10-24. These are static inventories from actual executions at fixed commits. They reuse recorded runs across implementation versions; this table is not a fresh full-corpus rescan or an accuracy evaluation. Private logs and full candidate inventories remain in the local delivery ZIP.
 
-Of 20 acquisition attempts, 13 complete checkouts have scan evidence: 11 with the default scope and 2 with explicit exclusions below. The other 7 acquisition failures remain recorded in the local audit. No target repository code or dependencies were installed or executed.
+The 20-repository corpus now has 14 complete checkouts with scan evidence: 12 with the default scope and 2 with explicit exclusions below. One proxy-assisted retry of previous acquisition failures added semantic-kernel. The remaining 6 repositories exceeded the declared 250 MB / 50,000-entry budget; these failures remain recorded. No target repository code or dependencies were installed or executed.
 
 | Repository | Fixed commit | Candidates | Scan scope |
 | --- | --- | ---: | --- |
@@ -19,6 +19,7 @@ Of 20 acquisition attempts, 13 complete checkouts have scan evidence: 11 with th
 | [agno-agi/agno](https://github.com/agno-agi/agno) | [44fb447c61e5f302897c065fe3865971d05c6e2a](https://github.com/agno-agi/agno/tree/44fb447c61e5f302897c065fe3865971d05c6e2a) | 1902 | default |
 | [vercel/ai](https://github.com/vercel/ai) | [e623e8c88b55066dde769614a16ae51d424974aa](https://github.com/vercel/ai/tree/e623e8c88b55066dde769614a16ae51d424974aa) | 5691 | explicit-exclusions |
 | [langfuse/langfuse](https://github.com/langfuse/langfuse) | [c83198b03f6b63e7d57c0daf016bb4d3ab052913](https://github.com/langfuse/langfuse/tree/c83198b03f6b63e7d57c0daf016bb4d3ab052913) | 2023 | explicit-exclusions |
+| [microsoft/semantic-kernel](https://github.com/microsoft/semantic-kernel) | [483ffb487a33a1644886992d56599feae3b69b76](https://github.com/microsoft/semantic-kernel/tree/483ffb487a33a1644886992d56599feae3b69b76) | 858 | default |
 
 Explicit exclusions, retained in the original manifests, reports and resume checks:
 
@@ -30,6 +31,17 @@ These three test fixtures exceed the 1,000,000-character single-line limit. Thei
 
 Human-reviewed gold records: **0**. Real TP, FP, FN, precision, recall and F1: **N/A**. Candidate counts include reviewable references and are not automatically true positives. The separate constructed benchmark (36 cases; TP 25, FP 0, FN 0) measures only its synthetic fixtures.
 
-License file excerpts and default branches were collected in the local reports. License suitability, independent searches for missed references, gold labeling and actual application evals still require review. In particular, repositories can have multiple license regions; a top-level LICENSE alone does not approve redistribution of their contents. No cloned source is redistributed here.
+The six resource-limited repositories still exist; GitHub metadata was checked separately. All currently report main as the default branch:
+
+| Repository | GitHub license identifier | Acquisition status |
+| --- | --- | --- |
+| [BerriAI/litellm](https://github.com/BerriAI/litellm) | NOASSERTION | Resource budget exceeded |
+| [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai) | MIT | Resource budget exceeded |
+| [run-llama/llama_index](https://github.com/run-llama/llama_index) | MIT | Resource budget exceeded |
+| [continuedev/continue](https://github.com/continuedev/continue) | Apache-2.0 | Resource budget exceeded |
+| [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) | MIT | Resource budget exceeded |
+| [mastra-ai/mastra](https://github.com/mastra-ai/mastra) | NOASSERTION | Resource budget exceeded |
+
+NOASSERTION is GitHub's metadata classification, not a conclusion that the repository lacks a license. License file excerpts and default branches were collected in the local reports. License suitability, independent searches for missed references, gold labeling and actual application evals still require review. Repositories can have multiple license regions; a top-level LICENSE alone does not approve redistribution of their contents. No cloned source is redistributed here.
 
 See the [annotation and scoring protocol](../data/real-repo-benchmark/README.md) and [validation status](VALIDATION.md).

@@ -24,7 +24,7 @@ node dist/cli.js check demo/repository/healthy --registry demo/registry.fixture.
 node dist/cli.js check demo/repository/retired --registry demo/registry.fixture.json
 ```
 
-macOS/Linux use the same commands in a terminal. The retired example intentionally returns 1. Fixtures contain synthetic models, not provider announcements. Only Windows has been executed locally; the CI matrix prepares Linux and Windows checks.
+macOS/Linux use the same commands in a terminal. The retired example intentionally returns 1. Fixtures contain synthetic models, not provider announcements. Windows local tests and the actual Linux/Windows Node 22 CI passed 77/77 tests; both composite-action consumer jobs also passed. See the [executed CI run](https://github.com/valseeee/modeldeps/actions/runs/40045422601). macOS remains unexecuted.
 
 ## Scan and migrate
 
@@ -72,7 +72,7 @@ Scanner supported files: TS/JS/Python and JSON/YAML/TOML/env/INI/properties/conf
 
 See [annotation rules](data/real-repo-benchmark/README.md). `npm run verify:delivery` runs checks, expected-failure demos, package content validation and an isolated package install. It writes actual commands and exit codes to `reports/verification/final-commands.json` and exits nonzero on mismatches. It does not clone or execute external repository code or publish anything.
 
-GitHub workflows use full commit-pinned Actions. CI uses read permissions; lifecycle fetching and PR write permissions are separated. Release verifies tag/version, tests and packages in a read-only job, then publishes artifacts in a separate write job only when an authorized tag is pushed. No workflow has been executed on GitHub in this local run. See [release checklist](RELEASE_CHECKLIST.md). Do not upload local audit reports containing personal paths. Never publish until outstanding verification requirements have been reviewed.
+GitHub workflows use full commit-pinned Actions. CI uses read permissions, retains execution logs and tests composite-action consumers. Lifecycle fetching and PR write permissions are separated. Release verifies tag/version, tests and packages in a read-only job, then publishes artifacts in a separate write job only when an authorized tag is pushed. Linux/Windows CI has actually passed; the Release workflow has not been run. See the [pinned consumer example](examples/modeldeps-workflow.yml) and [release checklist](RELEASE_CHECKLIST.md). Do not upload local audit reports containing personal paths. Release tags and npm publication still require owner authorization.
 
 Troubleshooting: missing dist → `npm run build`; missing dependencies → `npm ci`; source exit 3 → inspect official URL/network/region and retain current registry or use a reviewed snapshot; stale evidence → review/refresh sources and regenerate plan; changed inputs → regenerate plan and rerun eval; invalid gold labels → pin exact commit and label line/column before scoring.
 

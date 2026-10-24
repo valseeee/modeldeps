@@ -66,7 +66,7 @@ node dist/cli.js registry sync --provider anthropic --input data/snapshots/anthr
 
 [标注规则与续跑方法](data/real-repo-benchmark/README.md)。`npm run verify:delivery` 实际运行测试、构建、构造 benchmark、成功/失败 demo、包内容检查及独立安装包 smoke；命令退出码写入 reports/verification/final-commands.json，异常退出非 0，不发布任何内容。
 
-Actions 使用完整 commit SHA；CI 只读，数据抓取和创建 PR 的写权限分离。Release 在只读 job 完成 tag 版本检查、测试与打包，然后在独立写权限 job 发布授权 tag 的产物。本轮没有执行远端工作流。发布前按 [清单](RELEASE_CHECKLIST.md) 处理遗留验证；含个人路径的本地审计报告不应公开上传。
+Actions 使用完整 commit SHA；CI 只读并留存执行日志，数据抓取和创建 PR 的写权限分离。本地 Windows 和远端 Linux/Windows Node 22 均已实际通过 77/77 项测试，两平台 composite action consumer 也通过，见 [实际 CI 记录](https://github.com/valseeee/modeldeps/actions/runs/40045422601)。macOS 尚未执行。Release 在只读 job 完成 tag 版本检查、测试与打包，然后在独立写权限 job 发布授权 tag 的产物；本轮未执行 Release 工作流。可参考 [固定 commit 的调用示例](examples/modeldeps-workflow.yml)，发布前按 [清单](RELEASE_CHECKLIST.md) 处理遗留验证；含个人路径的本地审计报告不公开上传，发布标签、Release 和 npm 仍需另外授权。
 
 故障排查：缺 dist 运行 npm run build；缺依赖运行 npm ci；来源失败查看网络/地区和官方 URL，保留旧库或人工审核快照；输入变化重新生成计划并运行 eval；gold 无效则固定 commit 并填写行列。不得将构造 benchmark 或未标注候选数宣传为真实准确率。
 

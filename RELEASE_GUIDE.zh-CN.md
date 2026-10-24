@@ -4,9 +4,9 @@
 
 ## 发布前本地验证
 
-在项目根目录执行 `npm run verify:delivery`。它记录实际测试、构建、benchmark、demo、打包及安装包 smoke 的命令和退出码。核对 `docs/VALIDATION.md`、本地 `reports/round3/DELIVERY.md` 和 RELEASE_CHECKLIST.md。含个人路径的本地 reports/ 不应公开上传，已加入 .gitignore。
+在项目根目录执行 `npm run verify:delivery`。它记录实际测试、构建、benchmark、demo、打包及安装包 smoke 的命令和退出码。核对 `docs/VALIDATION.md`、本地 `reports/round4/DELIVERY.md` 和 RELEASE_CHECKLIST.md。含个人路径的本地 reports/ 不应公开上传，已加入 .gitignore。
 
-必须人工审核：继承的官方快照、当前官方页面、真实仓库许可证和完整 gold set。本轮大陆环境的联网验收由项目所有者豁免，不再反复尝试；宣传可用性之前仍应在官方支持的网络/地区/账户条件下验证 OpenAI 鉴权 API、Anthropic/Gemini 实时抓取。Linux/Windows GitHub CI、独立 consumer 项目调用 composite action 仍待外部验证。未完成时保持实验性描述，不宣传真实准确率。
+必须人工审核：继承的官方快照、当前官方页面、真实仓库许可证和完整 gold set。本轮大陆环境的联网验收由项目所有者豁免，不再反复尝试；宣传可用性之前仍应在官方支持的网络/地区/账户条件下验证 OpenAI 鉴权 API、Anthropic/Gemini 实时抓取。Linux/Windows GitHub CI 已实际通过 77/77 项测试及独立 consumer job；macOS、业务 eval 与 Release 本身尚未运行。保持实验性描述，不宣传真实准确率。
 
 ## 工作流行为
 
