@@ -13,6 +13,7 @@
     "scripts/benchmark.mjs",
     "scripts/benchmark-real-repos.mjs",
     "scripts/benchmark-support.mjs",
+    "scripts/prepare-benchmark-review.mjs",
     "README.md",
     "README.zh-CN.md",
     "docs/VALIDATION.md",

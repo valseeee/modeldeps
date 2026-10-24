@@ -13,7 +13,7 @@ export interface LivePageResult {
   warnings: string[];
 }
 
-interface HtmlTable { headers: string[]; rows: string[][]; heading: string; }
+interface HtmlTable { headers: string[]; rows: Array<{ cells: string[]; previewSection: boolean }>; heading: string; }
 
 function decodeEntities(value: string): string {
   return value
@@ -41,11 +41,18 @@ function parseTables(html: string): HtmlTable[] {
     const tableIndex = tableMatch.index ?? 0;
     const headingMatch = [...beforeTableHeadings].reverse().find((heading) => (heading.index ?? 0) < tableIndex);
     const tableHtml = tableMatch[1] ?? "";
-    const rows = [...tableHtml.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map((row) =>
-      [...(row[1] ?? "").matchAll(/<t[hd]\b[^>]*>([\s\S]*?)<\/t[hd]>/gi)].map((cell) => cellText(cell[1] ?? ""))
+    const rawRows = [...tableHtml.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map((row) =>
+      [...(row[1] ?? "").matchAll(/<t[hd]\b([^>]*)>([\s\S]*?)<\/t[hd]>/gi)]
     ).filter((row) => row.length > 0);
-    if (rows.length < 2) continue;
-    tables.push({ headers: rows[0]!.map((v) => v.toLowerCase()), rows: rows.slice(1), heading: headingMatch ? cellText(headingMatch[1] ?? "") : "" });
+    if (rawRows.length < 2) continue;
+    const headers = rawRows[0]!.map((cell) => cellText(cell[2] ?? "").toLowerCase());
+    const rows = rawRows.slice(1).map((row) => {
+      const cells = row.map((cell) => cellText(cell[2] ?? ""));
+      const span = (row[0]?.[1] ?? "").match(/\bcolspan\s*=\s*(?:"(\d+)"|'(\d+)'|(\d+))(?=\s|$)/i);
+      const previewSection = cells.length === 1 && /^preview models$/i.test(cells[0] ?? "") && Number(span?.[1] ?? span?.[2] ?? span?.[3]) === headers.length;
+      return { cells, previewSection };
+    });
+    tables.push({ headers, rows, heading: headingMatch ? cellText(headingMatch[1] ?? "") : "" });
   }
   return tables;
 }
@@ -92,9 +99,8 @@ function modelId(value: string): string | undefined {
 }
 
 function replacements(value: string, provider: Exclude<Provider, "unknown">, surface: string): Replacement[] {
-  const id = modelId(value);
-  if (!id) return [];
-  return [{ model_id: id, provider, surface, authority: "provider" }];
+  const ids = value.split("(", 1)[0]!.split(/\s+or\s+/i).map(modelId).filter((id): id is string => Boolean(id));
+  return [...new Set(ids)].map((id) => ({ model_id: id, provider, surface, authority: "provider" }));
 }
 
 export function parseOfficialLifecyclePage(
@@ -116,7 +122,7 @@ export function parseOfficialLifecyclePage(
   const source = {
     kind: "official" as const,
     evidence_mode: "live-page" as const,
-    parser_version: "0.4.0.2",
+    parser_version: "0.4.0.3",
     url: sourceUrl,
     observed_at: observedAt,
     sha256: rawHash
@@ -132,17 +138,22 @@ export function parseOfficialLifecyclePage(
     const hasLifecycleColumns = statusCol >= 0 || shutdownCol >= 0;
     if (!hasLifecycleColumns) continue;
 
-    for (const row of table.rows) {
+    const tableModels = new Set<string>();
+    let previewSection = false;
+    for (const parsedRow of table.rows) {
+      if (provider === "google" && parsedRow.previewSection) { previewSection = true; continue; }
+      const row = parsedRow.cells;
       const id = modelId(row[modelCol] ?? "");
-      if (!id) throw new Error("Lifecycle table contains a row without a canonical model ID.");
+      if (!id) throw new Error(`Lifecycle table contains a row without a canonical model ID: ${JSON.stringify((row[modelCol] ?? "").slice(0, 120))}`);
       if (row.length !== table.headers.length) throw new Error("Lifecycle table structure changed: missing cells.");
       if (models.size >= 2000) throw new Error("Lifecycle row count exceeds safety limit.");
       const dateText = shutdownCol >= 0 ? (row[shutdownCol] ?? "") : "";
       const shutdownAt = parseDate(dateText);
       if (dateText && !shutdownAt && !/^(?:n\/a|none|no shutdown date announced|to be announced|-)$/i.test(dateText.trim())) throw new Error(`Unrecognized shutdown date for ${id}: ${dateText}`);
-      if (models.has(id)) throw new Error(`Duplicate model row: ${id}`);
+      if (tableModels.has(id)) throw new Error(`Duplicate model row: ${id}`);
+      tableModels.add(id);
       const statusText = statusCol >= 0 ? (row[statusCol] ?? "") : "";
-      let status = statusCol >= 0 ? statusFromText(statusText) : (shutdownAt ? "deprecated" : (/preview/i.test(table.heading) || /preview/i.test(id) ? "preview" : "active"));
+      let status = statusCol >= 0 ? statusFromText(statusText) : (shutdownAt ? "deprecated" : (previewSection || /preview/i.test(table.heading) || /preview/i.test(id) ? "preview" : "active"));
       if (provider === "google" && shutdownAt) status = "deprecated"; // Google dates are earliest-possible, never proof of shutdown.
       const dateKind = shutdownAt ? (provider === "google" ? "earliest-possible" as const : (/not sooner than|tentative/i.test(dateText) || /tentative retirement date/.test(table.headers[shutdownCol] ?? "") ? "tentative" as const : "confirmed" as const)) : undefined;
       const announcedAt = deprecatedCol >= 0 ? parseDate(row[deprecatedCol] ?? "") : undefined;
@@ -159,7 +170,11 @@ export function parseOfficialLifecyclePage(
         ...(statusText.toLowerCase() === "legacy" ? { notes: "Provider labels this model legacy; ModelDeps preserves that distinction as status=unknown rather than guessing equivalence." } : {}),
         ...(provider === "google" && shutdownAt ? { notes: "Google documents this as the earliest possible shutdown date. A past date alone does not prove the endpoint is already disabled." } : {})
       };
-      models.set(id, record);
+      const existing = models.get(id);
+      if (existing) {
+        if (provider !== "google" || JSON.stringify(existing) !== JSON.stringify(record)) throw new Error(`Duplicate model row with conflicting lifecycle facts: ${id}`);
+        warnings.push(`Identical ${id} lifecycle facts repeated across separate official tables were consolidated.`);
+      } else models.set(id, record);
     }
   }
 
@@ -170,7 +185,7 @@ export function parseOfficialLifecyclePage(
       const deprecatedModelCol = column(table.headers, [/deprecated model/]);
       const replacementCol = column(table.headers, [/recommended replacement/]);
       if (deprecatedModelCol < 0 || replacementCol < 0) continue;
-      for (const row of table.rows) {
+      for (const { cells: row } of table.rows) {
         const id = modelId(row[deprecatedModelCol] ?? "");
         const replacement = replacements(row[replacementCol] ?? "", provider, sourceInfo.surface);
         if (!id || replacement.length === 0) continue;

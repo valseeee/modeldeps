@@ -58,4 +58,30 @@ test("missing replacement is preserved as unknown instead of guessed", () => {
     const result = parseOfficialLifecyclePage("google", html, "https://ai.google.dev/gemini-api/docs/deprecations");
     assert.deepEqual(result.models.find(m => m.model_id === "gemini-3.1-flash-lite")?.recommended_replacements, []);
 });
+test("Google preview dividers require the explicit full-width section markup", () => {
+    const divider = '<tr><td colspan="4">Preview models</td></tr>';
+    const extra = '<tr><td>lyria-realtime-exp</td><td>May 20, 2025</td><td>No shutdown date announced</td><td></td></tr>';
+    const html = googleHtml.replace('</tbody>', divider + extra + '</tbody>');
+    const url = "https://ai.google.dev/gemini-api/docs/deprecations";
+    const result = parseOfficialLifecyclePage("google", html, url);
+    assert.equal(result.models.length, 6);
+    assert.equal(result.models.find(m => m.model_id === "lyria-realtime-exp")?.status, "preview");
+    assert.equal(result.models.find(m => m.model_id === "gemini-3.8-flash")?.status, "active");
+    assert.throws(() => parseOfficialLifecyclePage("google", html.replace('colspan="4"', 'colspan="3"'), url), /canonical model ID/);
+    assert.throws(() => parseOfficialLifecyclePage("google", html.replace('Preview models', 'Unexpected section'), url), /canonical model ID/);
+});
+test("Google consolidates identical cross-table references but rejects conflicting or same-table duplicates", () => {
+    const url = "https://ai.google.dev/gemini-api/docs/deprecations";
+    const result = parseOfficialLifecyclePage("google", googleHtml + googleHtml, url);
+    assert.equal(result.models.length, 5);
+    assert.equal(result.warnings.length, 5);
+    assert.throws(() => parseOfficialLifecyclePage("google", googleHtml + googleHtml.replace('May 7, 2027', 'May 8, 2027'), url), /conflicting lifecycle facts/);
+    const duplicate = '<tr><td>gemini-3.8-flash</td><td>September 2, 2026</td><td>No shutdown date announced</td><td></td></tr>';
+    assert.throws(() => parseOfficialLifecyclePage("google", googleHtml.replace('</tbody>', duplicate + '</tbody>'), url), /Duplicate model row/);
+});
+test("explicit official alternative replacements are preserved without mining explanatory parentheses", () => {
+    const html = googleHtml.replace('<code>gemini-3.8-flash-tts</code>', '<code>gemini-3.8-flash-tts</code> or <code>gemini-3.8-flash-lite-tts</code> (routes to a different-model in some accounts)');
+    const result = parseOfficialLifecyclePage("google", html, "https://ai.google.dev/gemini-api/docs/deprecations");
+    assert.deepEqual(result.models.find(m => m.model_id === "gemini-3.1-flash-tts-preview")?.recommended_replacements.map(r => r.model_id), ["gemini-3.8-flash-tts", "gemini-3.8-flash-lite-tts"]);
+});
 //# sourceMappingURL=live-page.test.js.map
