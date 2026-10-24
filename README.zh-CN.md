@@ -6,7 +6,7 @@
 
 已实现：静态扫描与 provider/surface 身份、生命周期及过期策略、JSON/SARIF/GitHub Summary、人工快照导入、Registry 原子更新、计划重建验证、工作目录输入哈希、eval 执行、精确低风险 patch 与写入失败回滚。
 
-实验性：Anthropic/Gemini 官方网页解析器。适配器代码及离线 fixture 测试已完成；本次中国大陆网络环境出现访问/地区限制，经项目所有者要求，不将真实联网作为本轮本地验收失败项。其他地区须符合官方网络、地区和账户要求，不保证全球可用；遇到跳转白名单之外、空表、结构变化或异常日期会拒绝更新。OpenAI 同步需要环境变量 OPENAI_API_KEY，本轮无凭据，未验证鉴权接口。定时工作流是“自动抓取候选 + PR 人工审核更新”，不是实时数据库。内置快照是继承的人工整理数据，不代表本轮已联网核验。实际证据见 [交付报告](docs/VALIDATION.md)。
+Anthropic/Gemini 官方网页适配器已实现、通过离线测试，并于 2026-10-24 在 [GitHub 云端 Ubuntu 实际联网验证](https://github.com/valseeee/modeldeps/actions/runs/40049987206)，分别解析 23/81 条记录。网页结构仍可能变化；未知行、冲突事实、异常日期和未批准跳转会拒绝更新。大陆本地联网验收继续按所有者要求豁免，不保证全球 IP/账户可用。OpenAI 同步需要 OPENAI_API_KEY，本轮无凭据，未验证鉴权请求。定时工作流是“自动抓取候选 + PR 人工审核更新”；内置历史快照保持原样，真实联网候选等待审核。见 [验证记录](docs/VALIDATION.md)。
 
 真实仓库 benchmark 仅克隆与静态扫描，不安装或执行仓库代码。候选清单不是 gold set；必须由人工标注后才能报告准确率。
 
@@ -24,7 +24,7 @@ node dist/cli.js check demo/repository/healthy --registry demo/registry.fixture.
 node dist/cli.js check demo/repository/retired --registry demo/registry.fixture.json
 ```
 
-macOS/Linux 在终端进入项目目录后使用相同命令。退役示例预期退出 1，示例模型均为虚构 fixture。已本地执行 Windows；Linux 由 CI 配置准备，不能声称本轮已运行。
+macOS/Linux 在终端进入项目目录后使用相同命令。退役示例预期退出 1，示例模型均为虚构 fixture。本地 Windows 及远端 Windows/Linux/macOS Node 22 均已实际通过 85/85 测试。
 
 ## 迁移与证据
 
@@ -66,7 +66,7 @@ node dist/cli.js registry sync --provider anthropic --input data/snapshots/anthr
 
 [标注规则与续跑方法](data/real-repo-benchmark/README.md)。`npm run verify:delivery` 实际运行测试、构建、构造 benchmark、成功/失败 demo、包内容检查及独立安装包 smoke；命令退出码写入 reports/verification/final-commands.json，异常退出非 0，不发布任何内容。
 
-Actions 使用完整 commit SHA；CI 只读并留存执行日志，数据抓取和创建 PR 的写权限分离。本地 Windows 和远端 Linux/Windows Node 22 均已实际通过 77/77 项测试，两平台 composite action consumer 也通过，见 [实际 CI 记录](https://github.com/valseeee/modeldeps/actions/runs/40045422601)。macOS 尚未执行。Release 在只读 job 完成 tag 版本检查、测试与打包，然后在独立写权限 job 发布授权 tag 的产物；本轮未执行 Release 工作流。可参考 [固定 commit 的调用示例](examples/modeldeps-workflow.yml)，发布前按 [清单](RELEASE_CHECKLIST.md) 处理遗留验证；含个人路径的本地审计报告不公开上传，发布标签、Release 和 npm 仍需另外授权。
+Actions 使用完整 commit SHA；CI 只读并留存执行日志，数据抓取和创建 PR 的写权限分离。三平台完整验证及 consumer 共 6 个 job 均实际成功，见 [CI 记录](https://github.com/valseeee/modeldeps/actions/runs/40049977914)。Release 的手动准备演练已实际通过测试和归档，手动触发不会执行 publish；只有授权版本 tag 才能在校验和准备成功后进入独立发布 job。见 [固定 commit 的调用示例](examples/modeldeps-workflow.yml) 和 [发布清单](RELEASE_CHECKLIST.md)。含个人路径的本地报告不公开上传，tag、Release/npm 仍需另外授权。
 
 故障排查：缺 dist 运行 npm run build；缺依赖运行 npm ci；来源失败查看网络/地区和官方 URL，保留旧库或人工审核快照；输入变化重新生成计划并运行 eval；gold 无效则固定 commit 并填写行列。不得将构造 benchmark 或未标注候选数宣传为真实准确率。
 

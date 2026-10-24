@@ -6,7 +6,7 @@ Local-first model lifecycle inventory and evaluation-gated migration evidence. N
 
 Implemented: static source/config scanning, provider + surface identity, lifecycle/date/stale policy, JSON/SARIF/GitHub Summary, reviewed snapshot import, additive atomic registry updates, plan validation, workspace input hashes, eval execution and exact low-risk dry-run patches with process-level rollback.
 
-Experimental: Anthropic/Gemini HTML adapters. They reject unapproved redirects, changed/empty tables and invalid dates. Adapters are implemented and covered by offline fixtures. This mainland-China execution environment returned access/region failures; live requests are excluded from local acceptance by the project owner. Users elsewhere must meet provider network, region and account requirements; worldwide availability is not claimed. OpenAI sync requires `OPENAI_API_KEY`; no authenticated API request has been verified here. Scheduled fetching creates a PR for human review; this is not a live database. Bundled curated snapshots are inherited data, not evidence of a successful fetch in this run. See [delivery evidence](docs/VALIDATION.md).
+Anthropic/Gemini HTML adapters are implemented, offline-tested and [live-verified on GitHub-hosted Ubuntu](https://github.com/valseeee/modeldeps/actions/runs/40049987206): 23 Anthropic and 81 Gemini records on 2026-10-24. They remain sensitive to upstream markup and reject unapproved redirects, unknown rows, conflicting facts and invalid dates. Mainland-China local acceptance remains owner-exempted; network/region/account requirements elsewhere still apply. OpenAI sync requires `OPENAI_API_KEY` and remains unverified without credentials. Scheduled fetching proposes changes for human review. Bundled snapshots remain inherited data; live review candidates do not automatically replace them. See [validation status](docs/VALIDATION.md).
 
 Real-repository scanning runs only Git and static analysis. An inventory is not an accuracy evaluation. Human gold annotations are required for precision/recall; candidate output is never automatically ground truth.
 
@@ -24,7 +24,7 @@ node dist/cli.js check demo/repository/healthy --registry demo/registry.fixture.
 node dist/cli.js check demo/repository/retired --registry demo/registry.fixture.json
 ```
 
-macOS/Linux use the same commands in a terminal. The retired example intentionally returns 1. Fixtures contain synthetic models, not provider announcements. Windows local tests and the actual Linux/Windows Node 22 CI passed 77/77 tests; both composite-action consumer jobs also passed. See the [executed CI run](https://github.com/valseeee/modeldeps/actions/runs/40045422601). macOS remains unexecuted.
+macOS/Linux use the same commands in a terminal. The retired example intentionally returns 1. Fixtures contain synthetic models, not provider announcements. Windows local tests and actual Linux/Windows/macOS Node 22 CI passed 85/85 tests; all three composite-action consumer jobs also passed. See the [executed CI run](https://github.com/valseeee/modeldeps/actions/runs/40049977914).
 
 ## Scan and migrate
 
@@ -72,7 +72,7 @@ Scanner supported files: TS/JS/Python and JSON/YAML/TOML/env/INI/properties/conf
 
 See [annotation rules](data/real-repo-benchmark/README.md). `npm run verify:delivery` runs checks, expected-failure demos, package content validation and an isolated package install. It writes actual commands and exit codes to `reports/verification/final-commands.json` and exits nonzero on mismatches. It does not clone or execute external repository code or publish anything.
 
-GitHub workflows use full commit-pinned Actions. CI uses read permissions, retains execution logs and tests composite-action consumers. Lifecycle fetching and PR write permissions are separated. Release verifies tag/version, tests and packages in a read-only job, then publishes artifacts in a separate write job only when an authorized tag is pushed. Linux/Windows CI has actually passed; the Release workflow has not been run. See the [pinned consumer example](examples/modeldeps-workflow.yml) and [release checklist](RELEASE_CHECKLIST.md). Do not upload local audit reports containing personal paths. Release tags and npm publication still require owner authorization.
+GitHub workflows use full commit-pinned Actions. CI uses read permissions, retains execution logs and tests composite-action consumers on Linux, Windows and macOS. Lifecycle fetching and PR write permissions are separated. The manual Release preparation has actually passed, including tests and archive creation; manual dispatch skips publication. Only an authorized version-tag push enables the separate publish job, after tag/version validation and successful preparation. See the [pinned consumer example](examples/modeldeps-workflow.yml) and [release checklist](RELEASE_CHECKLIST.md). Release tags, GitHub Releases and npm publication still require owner authorization.
 
 Troubleshooting: missing dist → `npm run build`; missing dependencies → `npm ci`; source exit 3 → inspect official URL/network/region and retain current registry or use a reviewed snapshot; stale evidence → review/refresh sources and regenerate plan; changed inputs → regenerate plan and rerun eval; invalid gold labels → pin exact commit and label line/column before scoring.
 

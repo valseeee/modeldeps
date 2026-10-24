@@ -4,16 +4,16 @@
 
 ## 发布前本地验证
 
-在项目根目录执行 `npm run verify:delivery`。它记录实际测试、构建、benchmark、demo、打包及安装包 smoke 的命令和退出码。核对 `docs/VALIDATION.md`、本地 `reports/round4/DELIVERY.md` 和 RELEASE_CHECKLIST.md。含个人路径的本地 reports/ 不应公开上传，已加入 .gitignore。
+在项目根目录执行 `npm run verify:delivery`。它记录实际测试、构建、benchmark、demo、打包及安装包 smoke 的命令和退出码。核对 `docs/VALIDATION.md`、本地 `reports/round5/DELIVERY.md` 和 RELEASE_CHECKLIST.md。含个人路径的本地 reports/ 不应公开上传，已加入 .gitignore。
 
-必须人工审核：继承的官方快照、当前官方页面、真实仓库许可证和完整 gold set。本轮大陆环境的联网验收由项目所有者豁免，不再反复尝试；宣传可用性之前仍应在官方支持的网络/地区/账户条件下验证 OpenAI 鉴权 API、Anthropic/Gemini 实时抓取。Linux/Windows GitHub CI 已实际通过 77/77 项测试及独立 consumer job；macOS、业务 eval 与 Release 本身尚未运行。保持实验性描述，不宣传真实准确率。
+必须人工审核：继承的官方快照、真实仓库许可证和完整 gold set。已准备 35,192 个候选及许可证审核表，以及包含 104 条真实网页记录的 Registry 变更候选。Anthropic/Gemini 已在 GitHub 云端真实抓取成功，OpenAI 鉴权仍待 Key；大陆本地验收继续按所有者豁免。Windows/Linux/macOS CI 各 85/85 测试及独立 consumer 均通过，Release 准备演练已执行；没有业务项目/命令，故真实业务 eval 仍待提供。不得据此宣传真实准确率。
 
 ## 工作流行为
 
-CI：Linux/Windows、只读权限、测试/构建/构造 benchmark/demo/包内容和安装包 smoke；独立 consumer job 实际调用仓库内 composite action，验证健康用例成功、退役用例阻断。所有第三方 Actions 固定完整 commit SHA。
+CI：Windows/Linux/macOS、只读权限、测试/构建/构造 benchmark/demo/包内容和安装包 smoke；独立 consumer 验证健康成功、退役阻断及完整 SHA 的远端 Action 引用。所有第三方 Actions 固定完整 commit SHA。
 
-生命周期同步：每周一抓取候选，失败保留原数据；抓取/测试 job 只读，创建 PR 的独立 job 才有写权限；不会自动合并。OpenAI 需要通过 GitHub Secret 配置 Key。网页适配器受地区、网络及改版影响，目前不能声称本环境已实时验证成功。
+生命周期同步：每周一抓取候选，失败保留原数据；抓取/测试 job 只读，创建 PR 的独立 job 才有写权限；不会自动合并。OpenAI 需要私下配置 GitHub Secret。另有仅手动触发的 provider-acceptance.yml，只生成独立候选并检查正式 Registry 未改动，不会创建 PR。其 Anthropic 23 / Gemini 81 条记录已实际验证，但不保证每个 IP/地区或未来页面结构可用。
 
-Release：仅在推送 v*.*.* 标签时触发；只读 prepare job 检查版本匹配、执行验证并打包；独立 publish job 才能写 Release。失败不得进入 publish。未配置 npm 自动发布。
+Release：手动 workflow_dispatch 只做只读准备演练，publish 明确跳过；已实际完成一次演练及两个归档校验和检查。只有授权推送 v*.*.* tag，且与 package 版本严格匹配、全部验证和打包成功，独立 publish job 才能写 Release。未配置 npm 自动发布。
 
 本次源码上传在用户指定的本地项目中进行，不另建项目副本。上传前检查公开文件清单，排除本地报告、凭据、缓存和构建临时文件；上传后核对仓库和远端 CI 的实际结果。不要推送版本标签，也不要执行 Release/npm 发布。之后发布前仍须核对版本、数据来源和所有人工验收项。

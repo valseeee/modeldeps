@@ -1,6 +1,11 @@
 # Local hardening update (2026-10-24)
 
-Current 0.4.0 hardening supersedes earlier prune/live-sync claims. Prune is disabled; live adapters remain experimental. See README and docs/VALIDATION.md for executed evidence. Added workspace/config-bound eval, patch rollback, resource-bounded benchmark with reviewed commit-aware gold labels, grouped metrics, full Actions pins, separated release permissions and package smoke validation. Preserve snapshot bytes across Git checkouts to prevent Windows line-ending conversion from invalidating provenance hashes; regression tests exercise an actual automatic-line-ending checkout. Disk monitoring tolerates disappearing Git lock files while retaining other I/O and resource errors. CI retains executed verification logs and tests composite-action consumers on Linux and Windows.
+Current 0.4.0 hardening supersedes earlier prune/live-sync claims. Prune is disabled; live adapters remain experimental. See README and docs/VALIDATION.md for executed evidence. Added workspace/config-bound eval, patch rollback, resource-bounded benchmark with reviewed commit-aware gold labels, grouped metrics, full Actions pins, separated release permissions and package smoke validation. Preserve snapshot bytes across Git checkouts to prevent Windows line-ending conversion from invalidating provenance hashes; regression tests exercise an actual automatic-line-ending checkout. Disk monitoring tolerates disappearing Git lock files while retaining other I/O and resource errors. CI retains executed verification logs and tests composite-action consumers on Linux, Windows and macOS.
+
+- Verify 85 tests on all three CI platforms. Add manual Release preparation with version checks and publication disabled for manual runs.
+- Validate official Anthropic and Gemini pages on a hosted runner (23 and 81 records). Handle Google's preview sections and identical cross-table references while rejecting conflicting facts. Keep fresh data as review candidates; authenticated OpenAI sync still needs credentials.
+- Add bounded sparse acquisition for six previously over-budget repositories, with declared scope recorded and enforced during resume. The 20-repository inventory comprises 14 full checkouts and six sparse checkouts.
+- Generate review materials for 35,192 unreviewed candidates with pinned source links and license review sheets. Real accuracy metrics remain N/A until independent human annotation is available.
 
 # Changelog
 

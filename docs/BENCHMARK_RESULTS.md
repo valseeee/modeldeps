@@ -1,10 +1,10 @@
 # Recorded real-repository scan results
 
-Recorded on 2026-10-24. These are static inventories from actual executions at fixed commits. They reuse recorded runs across implementation versions; this table is not a fresh full-corpus rescan or an accuracy evaluation. Private logs and full candidate inventories remain in the local delivery ZIP.
+Recorded on 2026-10-24. These inventories come from actual static executions at fixed commits across recorded implementation versions. Previous successful repositories were not rescanned. This is not a uniform fresh full-corpus accuracy evaluation.
 
-The 20-repository corpus now has 14 complete checkouts with scan evidence: 12 with the default scope and 2 with explicit exclusions below. One proxy-assisted retry of previous acquisition failures added semantic-kernel. The remaining 6 repositories exceeded the declared 250 MB / 50,000-entry budget; these failures remain recorded. No target repository code or dependencies were installed or executed.
+**20 repositories have scan evidence:** 14 full checkouts (12 default scan scopes and 2 with explicit fixture exclusions) plus 6 explicitly sparse checkouts. The six historical full-acquisition resource failures remain recorded. Sparse successes validate only the listed directories and Git cone-mode root/ancestor files, within the unchanged 250 MB / 50,000-entry budgets. No target dependencies or repository code were installed or executed.
 
-| Repository | Fixed commit | Candidates | Scan scope |
+| Repository | Fixed commit | Candidates | Scope |
 | --- | --- | ---: | --- |
 | [openai/openai-agents-python](https://github.com/openai/openai-agents-python) | [0dc4cf152bff1f50bdc0e41f28808563406545b2](https://github.com/openai/openai-agents-python/tree/0dc4cf152bff1f50bdc0e41f28808563406545b2) | 1350 | default |
 | [openai/openai-python](https://github.com/openai/openai-python) | [81792ff040a2ca2b70348163049d3d69d5ba95cf](https://github.com/openai/openai-python/tree/81792ff040a2ca2b70348163049d3d69d5ba95cf) | 1180 | default |
@@ -20,28 +20,34 @@ The 20-repository corpus now has 14 complete checkouts with scan evidence: 12 wi
 | [vercel/ai](https://github.com/vercel/ai) | [e623e8c88b55066dde769614a16ae51d424974aa](https://github.com/vercel/ai/tree/e623e8c88b55066dde769614a16ae51d424974aa) | 5691 | explicit-exclusions |
 | [langfuse/langfuse](https://github.com/langfuse/langfuse) | [c83198b03f6b63e7d57c0daf016bb4d3ab052913](https://github.com/langfuse/langfuse/tree/c83198b03f6b63e7d57c0daf016bb4d3ab052913) | 2023 | explicit-exclusions |
 | [microsoft/semantic-kernel](https://github.com/microsoft/semantic-kernel) | [483ffb487a33a1644886992d56599feae3b69b76](https://github.com/microsoft/semantic-kernel/tree/483ffb487a33a1644886992d56599feae3b69b76) | 858 | default |
+| [BerriAI/litellm](https://github.com/BerriAI/litellm) | [428c9f6bf38730518d8ff13273a8d88445f2becc](https://github.com/BerriAI/litellm/tree/428c9f6bf38730518d8ff13273a8d88445f2becc) | 9771 | sparse-checkout |
+| [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai) | [120891d166555a20060650b9e0e699a530808b0d](https://github.com/pydantic/pydantic-ai/tree/120891d166555a20060650b9e0e699a530808b0d) | 123 | sparse-checkout |
+| [run-llama/llama_index](https://github.com/run-llama/llama_index) | [619d74664e8404612038bc15a1a40c686037277c](https://github.com/run-llama/llama_index/tree/619d74664e8404612038bc15a1a40c686037277c) | 183 | sparse-checkout |
+| [continuedev/continue](https://github.com/continuedev/continue) | [5522c6f44ca0ac3528b37244818fbfa39b5af470](https://github.com/continuedev/continue/tree/5522c6f44ca0ac3528b37244818fbfa39b5af470) | 226 | sparse-checkout |
+| [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) | [07361f6dc5f96d22efe565ff89297d22bce4a90f](https://github.com/crewAIInc/crewAI/tree/07361f6dc5f96d22efe565ff89297d22bce4a90f) | 4641 | sparse-checkout |
+| [mastra-ai/mastra](https://github.com/mastra-ai/mastra) | [308ca4d3fd58aadaa5121466622cd35df86f3a2c](https://github.com/mastra-ai/mastra/tree/308ca4d3fd58aadaa5121466622cd35df86f3a2c) | 1620 | sparse-checkout |
 
-Explicit exclusions, retained in the original manifests, reports and resume checks:
+Explicit exclusions for the two full checkouts:
 
 - `vercel/ai`: `packages/google/src/interactions/__fixtures__/image-output-modify.json`
 - `vercel/ai`: `packages/google/src/interactions/__fixtures__/image-output.json`
 - `langfuse/langfuse`: `web/src/__tests__/json-utils.clienttest.ts`
 
-These three test fixtures exceed the 1,000,000-character single-line limit. Their exclusion does not validate their contents. Default scope also retains the scanner's documented file-type and ignored-directory boundaries.
+These three fixtures exceed the scanner's 1,000,000-character single-line limit; excluded contents are not validated.
 
-Human-reviewed gold records: **0**. Real TP, FP, FN, precision, recall and F1: **N/A**. Candidate counts include reviewable references and are not automatically true positives. The separate constructed benchmark (36 cases; TP 25, FP 0, FN 0) measures only its synthetic fixtures.
+Sparse checkout directories (also pinned in [scoped-budget-repos.json](../data/real-repo-benchmark/scoped-budget-repos.json)):
 
-The six resource-limited repositories still exist; GitHub metadata was checked separately. All currently report main as the default branch:
+- `BerriAI/litellm`: `litellm/llms`
+- `pydantic/pydantic-ai`: `pydantic_ai_slim/pydantic_ai/models`, `pydantic_ai_slim/pydantic_ai/providers`
+- `run-llama/llama_index`: `llama-index-core/llama_index/core`
+- `continuedev/continue`: `core/llm`
+- `crewAIInc/crewAI`: `lib/crewai/src/crewai`
+- `mastra-ai/mastra`: `packages/core/src/llm`, `packages/core/src/agent`
 
-| Repository | GitHub license identifier | Acquisition status |
-| --- | --- | --- |
-| [BerriAI/litellm](https://github.com/BerriAI/litellm) | NOASSERTION | Resource budget exceeded |
-| [pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai) | MIT | Resource budget exceeded |
-| [run-llama/llama_index](https://github.com/run-llama/llama_index) | MIT | Resource budget exceeded |
-| [continuedev/continue](https://github.com/continuedev/continue) | Apache-2.0 | Resource budget exceeded |
-| [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) | MIT | Resource budget exceeded |
-| [mastra-ai/mastra](https://github.com/mastra-ai/mastra) | NOASSERTION | Resource budget exceeded |
+**35,192 candidates; 0 human-reviewed gold records.** Real TP/FP/FN, precision, recall and F1 remain **N/A**. Candidate counts are review queues, not true positives. The 36-case constructed benchmark is a separate fixture regression test.
 
-NOASSERTION is GitHub's metadata classification, not a conclusion that the repository lacks a license. License file excerpts and default branches were collected in the local reports. License suitability, independent searches for missed references, gold labeling and actual application evals still require review. Repositories can have multiple license regions; a top-level LICENSE alone does not approve redistribution of their contents. No cloned source is redistributed here.
+The delivered local review pack contains candidates.csv, licenses.csv, review-template.json and review-progress.json. Reviewer/decision fields are empty; reviewed:false and the incomplete missed-reference search flags remain explicit. It can be regenerated from recorded reports using scripts/prepare-benchmark-review.mjs. CSV formula prefixes are escaped for display while JSON preserves exact model identities.
 
-See the [annotation and scoring protocol](../data/real-repo-benchmark/README.md) and [validation status](VALIDATION.md).
+License files, hashes and default branches were collected. GitHub classified litellm/mastra license metadata as NOASSERTION; this does not establish absence of a license. License suitability, independent missed-reference search and complete-scope human labeling remain review tasks. No cloned source is redistributed in the public repository.
+
+See the [annotation protocol](../data/real-repo-benchmark/README.md) and [validation status](VALIDATION.md).
