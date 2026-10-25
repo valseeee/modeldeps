@@ -1,3 +1,7 @@
+# Patch validation (2026-10-25)
+
+Version 0.4.1 fixes benchmark commit attribution: tracked modifications, untracked files and ignored files now reject both initial scans and resume before cached findings can be reused. The real local Git regression failed before the fix (both extra-file cases returned success) and passed after the fix. Build and all six focused benchmark/release tests passed locally. The full prior 85-test records below are the 0.4.0 baseline; 0.4.1 full verification runs in the tag-triggered Release workflow and three-platform CI. No real benchmark corpus was rescanned or relabeled. Local execution evidence is retained under reports/round8.
+
 # Validation status (2026-10-24)
 
 ModelDeps 0.4.0 source is uploaded to valseeee/modeldeps. The latest local Windows test run passed **85/85 tests**, with no failures or skips. Actual [Linux/Windows/macOS Node 22 CI](https://github.com/valseeee/modeldeps/actions/runs/40049977914) also passed full verification and a composite-action consumer on every platform: six successful jobs. Commands, exit codes and full logs are retained as CI artifacts. Private local audit records accompany the complete ZIP under reports/round5 and reports/verification and are excluded from Git/npm.

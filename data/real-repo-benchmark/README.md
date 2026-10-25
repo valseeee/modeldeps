@@ -14,6 +14,8 @@ Choose a new report name for a new corpus version. Existing reports are not over
 
 Network/process limits: per-Git-command timeout, Git output cap, 200 ms sampled disk/file-count watchdog, and static scanner time/byte/file budgets. The watchdog is not an OS-enforced disk quota; disk use can overshoot between samples. Failed staging directories remain on disk and should be inspected/removed manually. No repository dependencies, LFS smudge, hooks or target code are executed. Public GitHub HTTPS URLs only; commit arguments must be full SHA. Dirty checkouts are rejected. License excerpts/hash and default branch are collected when available, but license appropriateness requires human review before redistribution. Only benchmark reports/candidates are delivered, not cloned source.
 
+Pinned checkouts must have no tracked modifications, untracked files or ignored files before scanning or resuming. The scanner does not use `.gitignore` as its scan boundary, so an ignored local config could otherwise contaminate findings while the Git commit stayed unchanged. Use a clean dedicated checkout; the harness reports a failure rather than deleting local files or silently reusing stale findings.
+
 Successful entries are emitted in `<report>.pins.json`. Use this pinned manifest to reproduce the corpus. Each report records date, exact commit, tool/config/implementation and Registry hashes, scan scope, command and runtime. Original starter entries do not silently become pinned history.
 
 ## Human gold set

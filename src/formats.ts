@@ -90,7 +90,7 @@ export function toSarif(result: CheckResult): Record<string, unknown> {
         driver: {
           name: "ModelDeps",
           informationUri: "https://github.com/modeldeps/modeldeps",
-          semanticVersion: "0.4.0",
+          semanticVersion: "0.4.1",
           rules: [...uniqueRules.values()]
         }
       },

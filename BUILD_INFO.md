@@ -1,3 +1,7 @@
+# Patch build record — 2026-10-25
+
+Current package/CLI/SARIF/benchmark metadata is 0.4.1. The benchmark rejects tracked, untracked and ignored working-tree changes before scanning or reusing a pinned report. The original failure and six passing focused benchmark/release tests are retained in reports/round8. The following 0.4.0 build record is historical; 0.4.1 final verification is performed by CI and the tag-triggered Release workflow.
+
 # Local build record — 2026-10-24
 
 Version remains 0.4.0. Work is performed in the user-selected local project. The owner has authorized uploading the verified source to a new public `valseeee/modeldeps` repository; the owner additionally authorized the v0.4.0 tag, GitHub Release and npm publication on 2026-10-25. Publication status is recorded separately; authorization does not supply npm credentials.

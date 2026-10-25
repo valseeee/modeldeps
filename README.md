@@ -1,6 +1,6 @@
 # ModelDeps
 
-Local-first model lifecycle inventory and evaluation-gated migration evidence. Node.js 22 or later; no runtime npm dependencies. Version 0.4.0.
+Local-first model lifecycle inventory and evaluation-gated migration evidence. Node.js 22 or later; no runtime npm dependencies. Version 0.4.1.
 
 ## Status
 
@@ -24,7 +24,7 @@ node dist/cli.js check demo/repository/healthy --registry demo/registry.fixture.
 node dist/cli.js check demo/repository/retired --registry demo/registry.fixture.json
 ```
 
-macOS/Linux use the same commands in a terminal. The retired example intentionally returns 1. Fixtures contain synthetic models, not provider announcements. Windows local tests and actual Linux/Windows/macOS Node 22 CI passed 85/85 tests; all three composite-action consumer jobs also passed. See the [executed CI run](https://github.com/valseeee/modeldeps/actions/runs/40049977914).
+macOS/Linux use the same commands in a terminal. The retired example intentionally returns 1. Fixtures contain synthetic models, not provider announcements. The 0.4.0 baseline passed 85/85 tests locally and in actual Linux/Windows/macOS Node 22 CI; all three composite-action consumer jobs also passed. See the [executed CI run](https://github.com/valseeee/modeldeps/actions/runs/40049977914).
 
 ## Scan and migrate
 

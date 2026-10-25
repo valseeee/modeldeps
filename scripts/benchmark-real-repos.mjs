@@ -36,7 +36,7 @@ const git = (repo, ...a) => execFileSync('git', ['-c', 'core.hooksPath=/dev/null
 const allActual = [], allExpected = [];
 async function atomic(file, value) { await mkdir(path.dirname(file), { recursive: true }); const tmp = `${file}.tmp`; await writeFile(tmp, JSON.stringify(value, null, 2) + '\n'); await rename(tmp, file); }
 async function checkpoint() {
-  const result = { schema_version: '1.2', generated_at: new Date().toISOString(), scanner_version: '0.4.0', configuration, command: args, node_version: process.version, mode: reports.some(r => r.labeled) ? 'scored' : 'inventory-only', repositories: reports, aggregate: allExpected.length || reports.some(r => r.labeled) ? scoreFindings(allActual, allExpected) : null, groups: Object.fromEntries(['language', 'file_type', 'provider', 'framework'].map(d => [d, groupedScores(allActual, allExpected, d)])), summary: { selected: selected.length, scanned: reports.filter(r => r.status === 'scanned').length, failed: reports.filter(r => r.status === 'failed').length, human_labeled: reports.filter(r => r.labeled).length } };
+  const result = { schema_version: '1.2', generated_at: new Date().toISOString(), scanner_version: '0.4.1', configuration, command: args, node_version: process.version, mode: reports.some(r => r.labeled) ? 'scored' : 'inventory-only', repositories: reports, aggregate: allExpected.length || reports.some(r => r.labeled) ? scoreFindings(allActual, allExpected) : null, groups: Object.fromEntries(['language', 'file_type', 'provider', 'framework'].map(d => [d, groupedScores(allActual, allExpected, d)])), summary: { selected: selected.length, scanned: reports.filter(r => r.status === 'scanned').length, failed: reports.filter(r => r.status === 'failed').length, human_labeled: reports.filter(r => r.labeled).length } };
   if (outputPath) await atomic(outputPath, result); else if (reports.length === selected.length) console.log(JSON.stringify(result, null, 2));
 }
 for (const entry of selected) {
@@ -78,7 +78,7 @@ for (const entry of selected) {
     const actualSparsePaths = sparseEnabled ? git(repoPath, 'sparse-checkout', 'list').split(/\r?\n/).filter(Boolean) : [];
     if (sparseEnabled !== (sparsePaths.length > 0) || JSON.stringify([...actualSparsePaths].sort()) !== JSON.stringify([...sparsePaths].sort())) throw new Error('Actual sparse checkout differs from the declared sparse_paths');
     const usage = await treeUsage(repoPath, limits.maxBytes, limits.maxFiles);
-    if (git(repoPath, 'status', '--porcelain', '--untracked-files=no')) throw new Error('Dirty benchmark checkout; refusing inaccurate commit attribution');
+    if (git(repoPath, 'status', '--porcelain', '--untracked-files=all', '--ignored=matching')) throw new Error('Dirty benchmark checkout (tracked, untracked or ignored files); refusing inaccurate commit attribution');
     const scan_config = { ignore: entry.ignore ?? [], sparse_paths: sparsePaths };
     if (!Array.isArray(scan_config.ignore) || !scan_config.ignore.every(pattern => typeof pattern === 'string')) throw new Error('Repository ignore must be a string list');
     const previous = prior?.repositories?.find(r => r.name === entry.name && r.commit === commit && r.status === 'scanned');

@@ -9,6 +9,12 @@ Current 0.4.0 hardening supersedes earlier prune/live-sync claims. Prune is disa
 
 # Changelog
 
+## 0.4.1 — pinned benchmark working-tree integrity
+
+- Reject untracked and ignored files as well as tracked modifications before scanning or reusing pinned findings; local generated model configs can no longer silently contaminate commit attribution.
+- Add a real Git regression covering both added-file cases and successful reuse after restoring the clean checkout.
+- Keep CLI, SARIF, report and package versions aligned; release tag tests follow the current package version.
+
 ## 0.4.0 — live lifecycle sync and real-repository benchmark harness
 
 - Add live HTML sync for Anthropic and Gemini official lifecycle pages with host allowlisting, redirect validation, request timeout/size limits, source-byte SHA-256, and fail-closed minimum-row checks.

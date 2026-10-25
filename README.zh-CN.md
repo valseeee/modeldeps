@@ -1,6 +1,6 @@
 # ModelDeps
 
-面向 AI 模型依赖的本地生命周期检查与迁移评测门禁。版本 0.4.0，需要 Node.js 22+，无运行时 npm 依赖。
+面向 AI 模型依赖的本地生命周期检查与迁移评测门禁。版本 0.4.1，需要 Node.js 22+，无运行时 npm 依赖。
 
 ## 能力与当前边界
 
@@ -66,7 +66,7 @@ node dist/cli.js registry sync --provider anthropic --input data/snapshots/anthr
 
 [标注规则与续跑方法](data/real-repo-benchmark/README.md)。`npm run verify:delivery` 实际运行测试、构建、构造 benchmark、成功/失败 demo、包内容检查及独立安装包 smoke；命令退出码写入 reports/verification/final-commands.json，异常退出非 0，不发布任何内容。
 
-Actions 使用完整 commit SHA；CI 只读并留存执行日志，数据抓取和创建 PR 的写权限分离。三平台完整验证及 consumer 共 6 个 job 均实际成功，见 [CI 记录](https://github.com/valseeee/modeldeps/actions/runs/40049977914)。Release 的手动准备演练已实际通过测试和归档，手动触发不会执行 publish；只有授权版本 tag 才能在校验和准备成功后进入独立发布 job。见 [固定 commit 的调用示例](examples/modeldeps-workflow.yml) 和 [发布清单](RELEASE_CHECKLIST.md)。含个人路径的本地报告不公开上传，2026-10-25 所有者已授权 v0.4.0 tag、Release/npm 发布；npm 是否可用取决于实际账号认证和发布结果。
+Actions 使用完整 commit SHA；CI 只读并留存执行日志，数据抓取和创建 PR 的写权限分离。0.4.0 基线的三平台完整验证及 consumer 共 6 个 job 均实际成功，见 [CI 记录](https://github.com/valseeee/modeldeps/actions/runs/40049977914)。Release 的手动准备演练已实际通过测试和归档，手动触发不会执行 publish；只有授权版本 tag 才能在校验和准备成功后进入独立发布 job。见 [固定 commit 的调用示例](examples/modeldeps-workflow.yml) 和 [发布清单](RELEASE_CHECKLIST.md)。含个人路径的本地报告不公开上传，2026-10-25 所有者已授权 v0.4.0 tag、Release/npm 发布；npm 是否可用取决于实际账号认证和发布结果。
 
 故障排查：缺 dist 运行 npm run build；缺依赖运行 npm ci；来源失败查看网络/地区和官方 URL，保留旧库或人工审核快照；输入变化重新生成计划并运行 eval；gold 无效则固定 commit 并填写行列。不得将构造 benchmark 或未标注候选数宣传为真实准确率。
 

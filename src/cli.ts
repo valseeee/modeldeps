@@ -498,7 +498,7 @@ async function main(): Promise<number> {
     return 0;
   }
   if (command === "--version" || command === "-v") {
-    process.stdout.write("0.4.0\n");
+    process.stdout.write("0.4.1\n");
     return 0;
   }
   const args = parseArgs(rest);

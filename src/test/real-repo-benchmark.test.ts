@@ -97,3 +97,38 @@ test("real-repository benchmark validates sparse checkout scope and never resume
     assert.match(JSON.parse(await readFile(output, "utf8")).repositories[0].reason, /safe repository-relative/);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
+
+test("real-repository benchmark rejects untracked and ignored files before resuming pinned findings", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "modeldeps-dirty-benchmark-"));
+  const repo = path.join(root, "repo");
+  const manifest = path.join(root, "manifest.json");
+  const output = path.join(root, "report.json");
+  try {
+    await mkdir(repo);
+    await writeFile(path.join(repo, "agent.ts"), 'const model = "gpt-4o-mini-2024-07-18";\n');
+    await writeFile(path.join(repo, ".gitignore"), "ignored-config.json\n");
+    execFileSync("git", ["init", "-q", repo]);
+    execFileSync("git", ["-c", "core.autocrlf=false", "add", "."], { cwd: repo });
+    execFileSync("git", ["-c", "user.name=ModelDeps Test", "-c", "user.email=test@example.invalid", "commit", "-qm", "fixture"], { cwd: repo });
+    const commit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: repo, encoding: "utf8" }).trim();
+    await writeFile(manifest, JSON.stringify({ repositories: [{ name: "dirty-fixture", path: repo, commit }] }));
+    const run = (...args: string[]) => spawnSync(process.execPath, [script, "--manifest", manifest, "--registry", registry, "--output", output, ...args], { encoding: "utf8" });
+    assert.equal(run().status, 0);
+    const cleanReport = await readFile(output, "utf8");
+    const cases = [];
+    for (const file of ["new-config.json", "ignored-config.json"]) {
+      await writeFile(path.join(repo, file), '{"model":"claude-3-5-haiku-20241022"}\n');
+      const result = run("--resume");
+      const report = JSON.parse(await readFile(output, "utf8"));
+      cases.push({ file, exit: result.status, status: report.repositories[0].status });
+      await rm(path.join(repo, file));
+      await writeFile(output, cleanReport);
+    }
+    assert.deepEqual(cases, [
+      { file: "new-config.json", exit: 3, status: "failed" },
+      { file: "ignored-config.json", exit: 3, status: "failed" }
+    ]);
+    assert.equal(run("--resume").status, 0);
+    assert.equal(JSON.parse(await readFile(output, "utf8")).repositories[0].resumed, true);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});

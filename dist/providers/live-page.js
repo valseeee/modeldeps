@@ -212,7 +212,7 @@ export async function fetchOfficialLifecyclePage(provider, now = new Date()) {
         if (destination.protocol !== "https:" || !sourceInfo.officialHosts.includes(destination.hostname))
             throw new Error(`${provider} lifecycle redirect is not approved: ${destination.hostname}`);
         response = await fetch(url, {
-            headers: { Accept: "text/html,application/xhtml+xml", "User-Agent": "ModelDeps/0.4.0" },
+            headers: { Accept: "text/html,application/xhtml+xml", "User-Agent": "ModelDeps/0.4.1" },
             redirect: "manual", signal
         });
         if (![301, 302, 303, 307, 308].includes(response.status))
