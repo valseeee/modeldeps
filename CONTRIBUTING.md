@@ -18,7 +18,11 @@ Every official lifecycle fact must include:
 2. the time the source was observed;
 3. a regression fixture/test;
 4. an exact provider + surface + model ID;
-5. no inferred replacement presented as provider-declared.
+5. no inferred replacement presented as provider-declared;
+6. the correct evidence mode and digest: `sha256` for fetched bytes or `snapshot_sha256` for a reviewed snapshot;
+7. parser version for newly parsed data and explicit date semantics (`confirmed`, `tentative`, `earliest-possible` or `unknown`).
+
+Preserve inherited observation timestamps. Successful fetching and schema validation create a review candidate; they do not establish human approval. Explain new/changed facts in the PR and retain records absent from an incomplete source. See [validation status](docs/VALIDATION.md) for the current evidence boundaries.
 
 Community recommendations may be recorded as `authority: community`, but must never be used for automatic edits. Do not commit API keys or other credentials. Demo fixture records are synthetic and must not be copied into a production registry.
 

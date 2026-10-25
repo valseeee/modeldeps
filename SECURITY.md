@@ -2,7 +2,9 @@
 
 ## Reporting a vulnerability
 
-Please do not publish credentials, exploitable details, or an unpatched vulnerability in a public issue. Use GitHub's private vulnerability reporting feature for this repository if it is enabled. If private reporting is unavailable, contact the repository maintainer through a private channel listed on the repository profile.
+Please do not publish credentials, exploitable details, or an unpatched vulnerability in a public issue. Use [GitHub's private vulnerability reporting form](https://github.com/valseeee/modeldeps/security/advisories/new) if it is available to your account. Availability has not been verified and is controlled by the repository owner. If the form is unavailable, open an issue requesting a private reporting channel, with no vulnerability details or proof of concept, and wait for the maintainer to provide one.
+
+In the private report, include the affected commit/version, operating system and Node.js version, a minimal reproduction without secrets, the expected and actual behavior, and the likely impact. No response-time guarantee is currently offered.
 
 ## Security boundaries
 
@@ -15,4 +17,4 @@ Please do not publish credentials, exploitable details, or an unpatched vulnerab
 
 ## Supported versions
 
-Security fixes target the latest release line. Please update to the latest available version before reporting a vulnerability.
+Security fixes currently target the 0.4.x development line. There is no announced GitHub Release or npm publication yet; identify the source commit in reports. Older source snapshots are not separately maintained.

@@ -10,6 +10,8 @@
 
 ## 工作流行为
 
+2026-10-25 已补充项目许可证、安全报告路径和贡献规范核对；npm 官方 registry 在 2026-10-24 对 `modeldeps-cli` 返回 404，该结果不能当作名称预留或账号发布权限。20 个仓库固定提交的根许可证文本已留存，其中 Autogen 的代码许可单列，Langfuse/LiteLLM/Mastra 存在按目录划分的额外条款；人工分发审核仍保留。本地详细记录见 reports/round6/。真实业务材料可使用 [业务验收表](docs/BUSINESS_ACCEPTANCE.zh-CN.md) 收集。
+
 CI：Windows/Linux/macOS、只读权限、测试/构建/构造 benchmark/demo/包内容和安装包 smoke；独立 consumer 验证健康成功、退役阻断及完整 SHA 的远端 Action 引用。所有第三方 Actions 固定完整 commit SHA。
 
 生命周期同步：每周一抓取候选，失败保留原数据；抓取/测试 job 只读，创建 PR 的独立 job 才有写权限；不会自动合并。OpenAI 需要私下配置 GitHub Secret。另有仅手动触发的 provider-acceptance.yml，只生成独立候选并检查正式 Registry 未改动，不会创建 PR。其 Anthropic 23 / Gemini 81 条记录已实际验证，但不保证每个 IP/地区或未来页面结构可用。
