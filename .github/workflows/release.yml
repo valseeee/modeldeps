@@ -31,6 +31,7 @@ jobs:
           mkdir -p release
           git archive --format=zip --prefix="modeldeps-${RELEASE_TAG}/" HEAD > "release/modeldeps-${RELEASE_TAG}.zip"
           cp reports/verification/modeldeps-cli-*.tgz release/
+          cp RELEASE_NOTES.md release/RELEASE_NOTES.md
           cd release
           sha256sum * > SHA256SUMS.txt
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -52,4 +53,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create "$GITHUB_REF_NAME" release/* --title "$GITHUB_REF_NAME" --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" release/* --title "$GITHUB_REF_NAME" --notes-file release/RELEASE_NOTES.md

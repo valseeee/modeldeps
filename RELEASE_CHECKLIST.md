@@ -1,6 +1,6 @@
 # Release checklist
 
-The owner authorized uploading this source to a new public `valseeee/modeldeps` repository on 2026-10-24. Tags, GitHub Releases and npm publication require separate authorization.
+The owner authorized uploading this source to a new public `valseeee/modeldeps` repository on 2026-10-24. On 2026-10-25 the owner additionally authorized the v0.4.0 tag, GitHub Release and npm publication. npm account authentication remains a separate technical requirement.
 
 - [ ] Review `docs/VALIDATION.md`, the local `reports/round5/DELIVERY.md` and every outstanding external/manual verification item.
 - [x] Run `npm run verify:delivery` on clean Node 22+; retain commands and exit codes. Linux/Windows/macOS CI passed 85/85 tests and all verification commands.
@@ -18,8 +18,8 @@ The owner authorized uploading this source to a new public `valseeee/modeldeps` 
 - [x] Prepare the [business acceptance worksheet](docs/BUSINESS_ACCEPTANCE.zh-CN.md); actual business inputs and eval execution remain pending.
 - [x] Keep reports/, release products, .env files, temp files and cloned repositories out of Git/public source. `.gitignore` excludes local audits; public files were audited before upload.
 - [x] Regression-test exact tag/package matching and reject mismatches/branch pushes. Manual Release preparation actually succeeded and skipped publication; both archive checksums matched.
-- [ ] Reconfirm the selected tag/package version when publication is authorized. Release prepare must succeed before the separate publish job can run.
+- [x] Select v0.4.0 for package version 0.4.0 under the 2026-10-25 publication authorization. Release prepare must succeed before the separate publish job can run.
 - [x] Obtain explicit user authorization for the new public repository and source upload.
-- [ ] Obtain separate explicit authorization before pushing a tag, publishing a Release or publishing npm.
+- [x] Obtain explicit authorization for the v0.4.0 tag, GitHub Release and npm publication (2026-10-25). Execute publication only with valid service credentials; retain the actual results.
 
 No npm publish workflow is included. Do not treat a configured eval pass as universal safety. Hash-based evidence cannot prevent a trusted local administrator from editing the tool or trusted Registry.

@@ -69,8 +69,8 @@
 | E5 | 完成 | 抓取与创建 PR、准备与发布的写权限 job 分离，不自动合并。 |
 | E6 | 完成 | Actions 均已用 API 核验的完整 SHA 固定，并在发布清单要求复查。 |
 | E7 | 三平台已远端执行 | Windows/Linux/macOS Node 22 各 85/85 tests，完整验证与 consumer 共 6 job 成功，并留存命令与完整日志。 |
-| E8 | 准备演练实际通过 | 手动 Release prepare 已完成测试、归档、校验和与上传，publish 实际跳过；不匹配 tag/分支事件有拒绝回归，正式发布仍需授权。 |
-| E9 | 已按当前授权上传 | 所有者于 2026-10-24 明确授权新建公开 valseeee/modeldeps 并上传源码，已完成；没有推送 tag、创建 Release 或发布 npm。 |
+| E8 | 准备演练实际通过 | 手动 Release prepare 已完成测试、归档、校验和与上传，publish 实际跳过；不匹配 tag/分支事件有拒绝回归，2026-10-25 已获正式发布授权，tag 工作流在验证后创建 Release。 |
+| E9 | 已按当前授权上传 | 所有者于 2026-10-24 明确授权新建公开 valseeee/modeldeps 并上传源码，已完成；2026-10-25 追加授权 v0.4.0 tag、GitHub Release 和 npm；实际发布结果另行记录，npm 认证为独立前提。 |
 | E10 | 完成（模式检查边界） | npm 白名单排除 tests/reports/.env/cache；检查已知 token、个人路径与大文件。完整本地 ZIP 的审计日志不应原样公开上传。 |
 
 ## F 文档与体验
@@ -81,7 +81,7 @@
 | F2 | 完成 | 区分实现、实验性、凭据、当地联网豁免、人工审核及外部验收；不保证所有境外 IP 可用。 |
 | F3 | 三平台已执行 | Windows/Linux/macOS Node 22 完整验证与 consumer 均实际通过。 |
 | F4 | 完成 | 最短健康/退役/eval 失败 demo、配置字段、退出码与故障排查。 |
-| F5 | 已执行可授权路径 | 三平台 CI、两家 Provider 真抓取、源码上传和 Release 准备演练均有实际证据；正式 Release/npm 未获授权，OpenAI 无 Key。 |
+| F5 | 已执行可授权路径 | 三平台 CI、两家 Provider 真抓取、源码上传和 Release 准备演练均有实际证据；正式 Release/npm 于 2026-10-25 获授权，npm 无登录、OpenAI 无 Key；发布实际结果另行记录。 |
 | F6 | 完成 | 无接近 100% 的真实准确率或三家实时已验证承诺；构造样例与真实清单分开报告。 |
 
 ## 仍需人工或外部环境完成的事项
@@ -89,7 +89,7 @@
 - 人工核验继承的官方快照、仓库许可证，标注真实 gold set；不能由自动生成的候选替代人工。
 - OpenAI 鉴权同步仍需私下配置 Key；Anthropic/Gemini 已在 GitHub 云端实际通过，仍不保证所有网络/地区/账户可用。大陆本地豁免保留。
 - 6 项历史全仓预算失败保留；同仓的显式稀疏代码范围已经实际通过，不能据此声称全仓验证。
-- 所有者目前没有业务 eval 或人工 gold 材料；已提供完整待审核包和官方 Registry 变更候选。macOS/Release 准备已验证，tag/正式 Release/npm 仍需另行授权。
+- 所有者目前没有业务 eval 或人工 gold 材料；已提供完整待审核包和官方 Registry 变更候选。macOS/Release 准备已验证，tag/正式 Release/npm 已获授权，npm 仍需有效认证。
 
 ## 明确不作的保证
 

@@ -17,4 +17,4 @@ In the private report, include the affected commit/version, operating system and
 
 ## Supported versions
 
-Security fixes currently target the 0.4.x development line. There is no announced GitHub Release or npm publication yet; identify the source commit in reports. Older source snapshots are not separately maintained.
+Security fixes currently target the 0.4.x development line. Identify the version and source commit in reports; GitHub Release and npm registry publication have independent availability and authentication requirements. Older source snapshots are not separately maintained.
