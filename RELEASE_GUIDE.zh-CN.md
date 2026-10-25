@@ -2,11 +2,13 @@
 
 2026-10-24 项目所有者已授权创建公开仓库 `valseeee/modeldeps` 并上传完成验证的项目源码。2026-10-25 所有者进一步明确授权推送 v0.4.0 标签、创建 GitHub Release 和发布 npm；无需重复确认。npm 仍需有效账号凭据。
 
+发布收尾（2026-10-26 更新）：[GitHub Release v0.4.1](https://github.com/valseeee/modeldeps/releases/tag/v0.4.1) 已公开；[modeldeps-cli@0.4.1](https://www.npmjs.com/package/modeldeps-cli/v/0.4.1) 于 2026-10-25 完成 npm 发布，latest 指向 0.4.1。命令行登录和发布安全验证均完成，官方 registry 元数据与 Release tarball 身份一致；独立安装、版本查询、169 条 Registry 校验均退出 0。记录见本地 reports/round9，发布不再等待账号认证。运行源码、dist、Registry 和既有发布制品未因本次文档收尾而改变。
+
 ## 发布前本地验证
 
 在项目根目录执行 `npm run verify:delivery`。它记录实际测试、构建、benchmark、demo、打包及安装包 smoke 的命令和退出码。核对 `docs/VALIDATION.md`、本地 `reports/round5/DELIVERY.md` 和 RELEASE_CHECKLIST.md。含个人路径的本地 reports/ 不应公开上传，已加入 .gitignore。
 
-必须人工审核：继承的官方快照、真实仓库许可证和完整 gold set。已准备 35,192 个候选及许可证审核表，以及包含 104 条真实网页记录的 Registry 变更候选。Anthropic/Gemini 已在 GitHub 云端真实抓取成功，OpenAI 鉴权仍待 Key；大陆本地验收继续按所有者豁免。Windows/Linux/macOS CI 各 85/85 测试及独立 consumer 均通过，Release 准备演练已执行；没有业务项目/命令，故真实业务 eval 仍待提供。不得据此宣传真实准确率。
+必须人工审核：继承的官方快照、真实仓库许可证和完整 gold set。已准备 35,192 个候选及许可证审核表，以及包含 104 条真实网页记录的 Registry 变更候选。Anthropic/Gemini 已在 GitHub 云端真实抓取成功，OpenAI 鉴权仍待 Key；大陆本地验收继续按所有者豁免。0.4.0 的 85/85 基线保留；0.4.1 完整测试为 86/86，三平台测试及独立 consumer 共六个 job 成功，正式 Release 已公开。已准备固定提交的 BANKING77 参考输入，但没有运行真实模型，也没有所有者的业务项目/命令，故真实业务验收仍未执行。不得据此宣传真实准确率。
 
 ## 工作流行为
 

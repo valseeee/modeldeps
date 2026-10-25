@@ -12,6 +12,14 @@ Real-repository scanning runs only Git and static analysis. An inventory is not 
 
 ## Quick start
 
+Published: [modeldeps-cli@0.4.1 on npm](https://www.npmjs.com/package/modeldeps-cli/v/0.4.1) and [GitHub Release v0.4.1](https://github.com/valseeee/modeldeps/releases/tag/v0.4.1). An isolated install from the official npm registry passed CLI version and bundled Registry validation. Run the published CLI on Windows, macOS or Linux:
+
+```sh
+npx --yes modeldeps-cli@0.4.1 --version
+```
+
+For source development:
+
 Windows PowerShell, from the extracted project directory:
 
 ```powershell
@@ -72,7 +80,7 @@ Scanner supported files: TS/JS/Python and JSON/YAML/TOML/env/INI/properties/conf
 
 See [annotation rules](data/real-repo-benchmark/README.md). `npm run verify:delivery` runs checks, expected-failure demos, package content validation and an isolated package install. It writes actual commands and exit codes to `reports/verification/final-commands.json` and exits nonzero on mismatches. It does not clone or execute external repository code or publish anything.
 
-GitHub workflows use full commit-pinned Actions. CI uses read permissions, retains execution logs and tests composite-action consumers on Linux, Windows and macOS. Lifecycle fetching and PR write permissions are separated. The manual Release preparation has actually passed, including tests and archive creation; manual dispatch skips publication. Only an authorized version-tag push enables the separate publish job, after tag/version validation and successful preparation. See the [pinned consumer example](examples/modeldeps-workflow.yml) and [release checklist](RELEASE_CHECKLIST.md). The owner authorized the v0.4.0 tag, GitHub Release and npm publication on 2026-10-25; npm still requires authenticated account access.
+GitHub workflows use full commit-pinned Actions. CI uses read permissions, retains execution logs and tests composite-action consumers on Linux, Windows and macOS. Lifecycle fetching and PR write permissions are separated. Manual dispatch skips publication. Only an authorized version-tag push enables the separate publish job, after tag/version validation and successful preparation. Version 0.4.1 passed 86/86 tests and all six [CI jobs](https://github.com/valseeee/modeldeps/actions/runs/40147001876); its [Release workflow](https://github.com/valseeee/modeldeps/actions/runs/40147001818) completed preparation and publication. npm publication completed on 2026-10-25 after account authentication and publication security verification; `latest` points to 0.4.1. See the [pinned consumer example](examples/modeldeps-workflow.yml) and [release checklist](RELEASE_CHECKLIST.md). No automatic npm publishing workflow is configured.
 
 Troubleshooting: missing dist → `npm run build`; missing dependencies → `npm ci`; source exit 3 → inspect official URL/network/region and retain current registry or use a reviewed snapshot; stale evidence → review/refresh sources and regenerate plan; changed inputs → regenerate plan and rerun eval; invalid gold labels → pin exact commit and label line/column before scoring.
 

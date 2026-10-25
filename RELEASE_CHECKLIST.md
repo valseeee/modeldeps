@@ -2,8 +2,10 @@
 
 The owner authorized uploading this source to a new public `valseeee/modeldeps` repository on 2026-10-24. On 2026-10-25 the owner additionally authorized the v0.4.0 tag, GitHub Release and npm publication. npm account authentication remains a separate technical requirement.
 
+Publication completed: [GitHub Release v0.4.1](https://github.com/valseeee/modeldeps/releases/tag/v0.4.1) and [npm modeldeps-cli@0.4.1](https://www.npmjs.com/package/modeldeps-cli/v/0.4.1) are public. npm account authentication and publication security verification succeeded on 2026-10-25. Its `latest` tag and isolated registry install were verified; local evidence is in reports/round8 and reports/round9. This checklist still retains external data/business review items; publication does not complete those reviews.
+
 - [ ] Review `docs/VALIDATION.md`, the local `reports/round5/DELIVERY.md` and every outstanding external/manual verification item.
-- [x] Run `npm run verify:delivery` on clean Node 22+; retain commands and exit codes. Linux/Windows/macOS CI passed 85/85 tests and all verification commands.
+- [x] Run `npm run verify:delivery` on clean Node 22+; retain commands and exit codes. The 0.4.0 baseline passed 85/85 tests; 0.4.1 passed 86/86 tests and all 18 verification commands.
 - [x] Check compiled dist matches source; all three CI platforms passed `git diff --exit-code -- dist`.
 - [ ] Review all inherited lifecycle snapshots against current official pages. Snapshot JSON hashes are not webpage authentication.
 - [x] Anthropic/Gemini live adapters passed hosted Ubuntu acceptance (23/81 records); retain source hashes and separate review candidates. Mainland-China local checks remain owner-exempted.
@@ -21,5 +23,7 @@ The owner authorized uploading this source to a new public `valseeee/modeldeps` 
 - [x] Select v0.4.0 for package version 0.4.0 under the 2026-10-25 publication authorization. Release prepare must succeed before the separate publish job can run.
 - [x] Obtain explicit user authorization for the new public repository and source upload.
 - [x] Obtain explicit authorization for the v0.4.0 tag, GitHub Release and npm publication (2026-10-25). Execute publication only with valid service credentials; retain the actual results.
+- [x] Publish v0.4.1 through the verified tag workflow; retain successful prepare/publish results and public release assets.
+- [x] Publish the verified 0.4.1 release tarball to npm after interactive account authentication. Check official registry metadata, `latest`, artifact identity and isolated consumer installation; all passed.
 
 No npm publish workflow is included. Do not treat a configured eval pass as universal safety. Hash-based evidence cannot prevent a trusted local administrator from editing the tool or trusted Registry.
